@@ -1,0 +1,32 @@
+:root {
+    --dark-color: #171400;
+    --main-ochre: #f7d60d;
+    --ochre-accent: #d5b807;
+    --white-color: #fefbeb;
+    --dark-text-color: #372f01;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    background-color: var(--dark-color);
+    color: var(--white-color);
+}
+
+.nav-bar {
+    background-color: var(--main-ochre);
+    height: 5em;
+    box-shadow: 0em .25em var(--ochre-accent);
+    color: var(--dark-text-color);
+    text-align: center;
+}
+main {
+    padding: 1em;
+    text-align: center;
+}
