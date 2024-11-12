@@ -22,7 +22,7 @@ To further this project, I want to use typescript, and host my api so that I can
 - [ ] be able to add a blank list
 - [ ] be able to add a model to the list and set the name
 > Nov 20 (45%)
-- [ ] create export and download as pdf functionalaity
+- [ ] create export and download as pdf functionality
 - [ ] populate the settings page
 - [ ] create alternate themes
 > Nov 23 (60%)
