@@ -24,8 +24,9 @@
     "active": true,
     "targets": "all",
     "icon": [
-      "TauSeptIcon.ico",
-      "TauSeptIcon.png"
+      "icons/TauSeptIcon.ico",
+      "icons/TauSeptIcon.jpg",
+      "icons/TauSeptIcon.png"
     ]
   }
 }

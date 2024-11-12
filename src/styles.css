@@ -20,13 +20,68 @@ body {
 }
 
 .nav-bar {
+    position: fixed;width: 100%;
     background-color: var(--main-ochre);
     height: 5em;
-    box-shadow: 0em .25em var(--ochre-accent);
+    box-shadow: 0em .25em var(--white-color);
     color: var(--dark-text-color);
     text-align: center;
 }
 main {
     padding: 1em;
     text-align: center;
+}
+
+#bottom-bar {
+    margin: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: .5em;
+    display: flex;
+    background-color: var(--main-ochre);
+    color: var(--dark-text-color);
+    list-style: none;
+    height: 2em;
+    justify-items: center;
+    align-items: center;
+    border-top-style: solid;
+    border-top-color: var(--white-color);
+    border-width: .25em;
+    justify-content: space-evenly;
+}
+
+#bottom-bar a {
+    text-decoration: none;
+    transition: .5s;
+    color: var(--dark-text-color);
+}
+
+#bottom-bar a:hover {
+    color: #fefbeb;
+    font-size: larger;
+}
+
+#spacer {
+    height: 3.5em;
+}
+
+#plus-icon {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--dark-color);
+    width: 5em;
+    border-radius: 5em;
+    height: 5em;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 1em;
+    border-style: solid;
+    border-color: var(--white-color);
+    font-size: large;
+}
+
+#plus-icon:hover {
+    background-color: var(--dark-text-color);
 }
