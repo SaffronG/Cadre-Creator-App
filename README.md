@@ -13,9 +13,9 @@ To further this project, I want to use typescript, and host my api so that I can
 <hr>
 
 > Nov 13 (15%)
-- [ ] set up tauri project and basic api
-- [ ] create api schema
-- [ ] make landing page
+- [x] set up tauri project and basic api
+- [x] create api schema
+- [x] make landing page
 - [ ] set up typescript pipeline
 > Nov 16 (30%)
 - [ ] create list view page
