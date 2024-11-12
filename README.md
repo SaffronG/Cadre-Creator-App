@@ -38,3 +38,8 @@ To further this project, I want to use typescript, and host my api so that I can
 -  [ ] iron out styling
 -  [ ] package as docker
 -  [ ] target for mobile development
+
+<hr>
+
+> Api Documentation
+https://app.swaggerhub.com/apis/SAFFRONGAMER167/WarhammerDatasheets/0.1.1
