@@ -4,7 +4,7 @@ _A simple rust-based application targeted towards windows and android architectu
 
 <hr>
 
-I want to create a simple rust-based desktop/mobile app that uses html css and javascript as frontend using the Tauri framework. This will manage the user's lists, allow them to create them, view their rules, print them, save them, and import them. I will also have a rust API to provide this basic functionality.
+I want to create a simple rust-based desktop/mobile app that uses html css and javascript as frontend using the Tauri framework. This will manage the user's warhammer lists, allow them to create them, view their rules, print them, save them, and import them. I will also have a rust API to provide this basic functionality.
 
 Each user will be able to log in, create an account, and view their lists and favorited rules and models. They should also be able to select a pre-made theme for the application. Export will either print to pdf, or share via email to the given address. Download will print or download the lsit as a pdf.
 
