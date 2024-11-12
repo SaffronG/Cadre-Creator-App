@@ -11,6 +11,7 @@ Each user will be able to log in, create an account, and view their lists and fa
 To further this project, I want to use typescript, and host my api so that I can use my app on my phone wherever I have an internet connection. I would also like to learn how to use docker and mobile-targeted development.
 
 <hr>
+
 > Nov 13 (15%)
 - [ ] set up tauri project and basic api
 - [ ] create api schema
