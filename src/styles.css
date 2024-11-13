@@ -1,3 +1,8 @@
+@font-face {
+    font-family: tauFont;
+    src: url(assets/Tau-mmP2.ttf);
+}
+
 :root {
     --dark-color: #171400;
     --main-ochre: #f7d60d;
@@ -26,6 +31,10 @@ body {
     box-shadow: 0em .25em var(--white-color);
     color: var(--dark-text-color);
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    justify-content: center;
 }
 main {
     padding: 1em;
@@ -84,4 +93,10 @@ main {
 
 #plus-icon:hover {
     background-color: var(--dark-text-color);
+}
+
+.tau-font-decor {
+    font-family: tauFont;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
 }

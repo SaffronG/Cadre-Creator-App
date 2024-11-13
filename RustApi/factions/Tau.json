@@ -1,0 +1,10 @@
+{
+    "Faction": "Tau",
+    "Detachments":
+    {
+        "Kauyon": "/factions/tau/kauyon",
+        "Mont'Ka": "/factions/tau/montka",
+        "Retaliation Cadre": "/factions/tau/retaliation_cadre",
+        "Kroot Hunting Pack": "/factions/tau/kroot_hunting_pack"
+    }
+}
