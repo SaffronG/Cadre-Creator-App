@@ -1,0 +1,9 @@
+{
+    "Name": "Kroot Killer Squad",
+    "Detachment": "Kroot Hunting Pack",
+    "Points": 1000,
+    "Models": {
+        "Kroot Lonespear": "http://127.0.0.1:8000/models/kroot_lonespear.json",
+        "Kroot Trailshaper": "http://127.0.0.1:8000/modles.kroot_trailshaper.json"
+    }
+}

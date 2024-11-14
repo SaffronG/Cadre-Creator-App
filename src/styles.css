@@ -105,3 +105,17 @@ main {
     text-decoration: none;
     color: var(--dark-text-color);
 }
+
+.listViewer {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5em;
+    border-style: solid;
+    border-radius: .5em;
+    background-color: var(--ochre-accent);
+    color: var(--dark-color);
+}
+
+.listText {
+    padding: 2%;
+}
