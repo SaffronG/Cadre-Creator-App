@@ -28,7 +28,7 @@ fn get_factions_list() -> String {
 }
 
 #[get("/factions/<faction>/<detachment>")]
-fn get_detachment(faction: String, detachment: String) -> String {
+fn get_detachment(faction: &str, detachment: &str) -> String {
     if !fs::exists("./detachments").unwrap()
     {
         fs::create_dir("./detachments").unwrap();

@@ -100,3 +100,8 @@ main {
     writing-mode: vertical-rl;
     text-orientation: upright;
 }
+
+#homeButton {
+    text-decoration: none;
+    color: var(--dark-text-color);
+}
