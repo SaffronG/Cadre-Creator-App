@@ -1,0 +1,1 @@
+C:\Users\chase\Documents\rust_projects\Cadre\ Creator\RustApi\target\debug\libRustApi.rlib: C:\Users\chase\Documents\rust_projects\Cadre\ Creator\RustApi\src\json_handler.rs C:\Users\chase\Documents\rust_projects\Cadre\ Creator\RustApi\src\lib.rs

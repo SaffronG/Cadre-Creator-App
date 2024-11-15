@@ -119,3 +119,11 @@ main {
 .listText {
     padding: 2%;
 }
+
+#examplePlus {
+    font-size: 12px;
+}
+
+#welcomeHeader {
+    padding-top: .5em;
+}

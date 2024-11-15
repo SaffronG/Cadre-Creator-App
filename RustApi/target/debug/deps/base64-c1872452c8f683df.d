@@ -1,0 +1,11 @@
+C:\Users\chase\Documents\rust_projects\Cadre Creator\rustApi\target\debug\deps\libbase64-c1872452c8f683df.rmeta: C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\lib.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\chunked_encoder.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\display.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\line_wrap.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\tables.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\encode.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\decode.rs
+
+C:\Users\chase\Documents\rust_projects\Cadre Creator\rustApi\target\debug\deps\base64-c1872452c8f683df.d: C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\lib.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\chunked_encoder.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\display.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\line_wrap.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\tables.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\encode.rs C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\decode.rs
+
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\lib.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\chunked_encoder.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\display.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\line_wrap.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\tables.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\encode.rs:
+C:\Users\chase\.cargo\registry\src\index.crates.io-6f17d22bba15001f\base64-0.9.3\src\decode.rs:
