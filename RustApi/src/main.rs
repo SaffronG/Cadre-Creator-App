@@ -6,11 +6,33 @@ use RustApi::List;
 use serde_json::{Result, value};
 use serde::{Deserialize};
 mod json_handler;
+use rocket::http::Header;
+use rocket::{Request, Response};
+use rocket::fairing::{Fairing, Info, Kind};
 
 #[derive(Deserialize, Debug)]
 struct Faction {
     faction: String,
     detachments: Vec<String>
+}
+
+pub struct CORS;
+
+#[rocket::async_trait]
+impl Fairing for CORS {
+    fn info(&self) -> Info {
+        Info {
+            name: "Add CORS headers to responses",
+            kind: Kind::Response
+        }
+    }
+
+    async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
+        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS"));
+        response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
+    }
 }
 
 #[get("/")]
@@ -74,6 +96,7 @@ fn get_model(model: String) -> String {
 #[launch]
 fn rocket() -> _ {
     rocket::build()
+        .attach(CORS)
         .mount("/", routes![json_schema, get_factions_list, get_lists, get_list])
         .mount("/factions", routes![get_faction])
         .mount("/models", routes![get_model])

@@ -108,16 +108,32 @@ main {
 
 .listViewer {
     display: flex;
-    flex-direction: column;
     margin: 1.5em;
     border-style: solid;
-    border-radius: .5em;
+    border-radius: .7em;
     background-color: var(--ochre-accent);
     color: var(--dark-color);
+    justify-content: center;
+    align-items: center;
+}
+
+.viewMore {
+    border-radius: .5em;
+    width: 5em;
+    height: 5em;
+    margin-left: auto;
+    transition: .5s;
+}
+
+.viewMore:hover {
+    background-color: rgb(19, 171, 173);
+    color: rgb(27, 222, 226);
 }
 
 .listText {
-    padding: 2%;
+    margin-left: 2em;
+    font-size: larger;
+    font-weight: bolder;
 }
 
 #examplePlus {

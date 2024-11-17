@@ -1,3 +1,6 @@
+import { promises } from "dns"
+import { get_headers } from "./service.js"
+import { get_list } from "./service.js"
 // import fs from 'fs'
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -16,23 +19,24 @@ function renderLanding() {
     mainAnchorNode.replaceChildren(welcomeHeader, introText)
 }
 
-function renderListsPage() {
-    const listDivNode = document.createElement('div')
-    listDivNode.className = "listViewer"
-
-    const headerContentsNode = document.createElement('h1')
-    headerContentsNode.className = "listNodeH1"
-    headerContentsNode.textContent = "Farsight Tsunami Cadre"
-
-    const pointValuesNode = document.createElement('p')
-    pointValuesNode.className = "point values"
-    pointValuesNode.textContent = "2,000 pts"
-
-    const plusButton = document.createElement('button')
-    plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>'
-
-    listDivNode.replaceChildren(headerContentsNode, pointValuesNode, plusButton)
-    mainAnchorNode.replaceChildren(listDivNode)
+async function renderListsPage() {
+    let listsJson = await get_headers()
+    let anchorListNode: HTMLDivElement = document.createElement('div')
+    listsJson.lists.forEach(list => {
+        console.log(list)
+        let listContainderNode: HTMLDivElement = document.createElement('div')
+        listContainderNode.className = "listViewer"
+        let listName: HTMLParagraphElement = document.createElement('p')
+        listName.textContent = list
+        listName.className = "listText"
+        let plusButtom: HTMLButtonElement = document.createElement('button')
+        plusButtom.className = "viewMore"
+        plusButtom.innerHTML = '<i class="fa-solid fa-plus"></i>'
+        listContainderNode.appendChild(listName)
+        listContainderNode.appendChild(plusButtom)
+        anchorListNode.appendChild(listContainderNode)
+    });
+    mainAnchorNode.replaceChildren(anchorListNode)
 }
 
 async function renderSettingsPage() {
