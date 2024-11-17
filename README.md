@@ -16,9 +16,9 @@ To further this project, I want to use typescript, and host my api so that I can
 - [x] set up tauri project and basic api
 - [x] create api schema
 - [x] make landing page
-- [ ] set up typescript pipeline
+- [x] set up typescript pipeline
 > Nov 16 (30%)
-- [ ] create list view page
+- [x] create list view page
 - [ ] be able to add a blank list
 - [ ] be able to add a model to the list and set the name
 > Nov 20 (45%)
@@ -30,7 +30,7 @@ To further this project, I want to use typescript, and host my api so that I can
 - [ ] user can log in if their account exists and if their email is unique
 - [ ] user can save their list on the server 
 > Nov 26 (75%)
-- [ ] populate rules api
+- [x] populate rules api
 - [ ] user can view the given rules
 - [ ] user can view all available models and their images
 > December 4 (100%)
