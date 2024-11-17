@@ -1,10 +1,22 @@
 #[macro_use] extern crate rocket;
 
-use std::{fs, vec};
+use std::{fs, path, vec};
+use rocket::{fs::NamedFile, http::ext::IntoCollection};
 use RustApi::List;
-use rocket::serde::{Deserialize ,Serialize};
-// use rocket_contrib::json::Json;
+use serde_json::{Result, value};
+use serde::{Deserialize};
 mod json_handler;
+
+#[derive(Deserialize, Debug)]
+struct Faction {
+    faction: String,
+    detachments: Vec<String>
+}
+
+#[get("/")]
+async fn json_schema() -> NamedFile {
+    NamedFile::open("schema.html").await.unwrap()
+}
 
 #[get("/factions")]
 fn get_factions_list() -> String {
@@ -17,7 +29,7 @@ fn get_factions_list() -> String {
     for path in fs::read_dir("./factions").unwrap() {
         if let Ok(ref _entry) = path {
             out += "\"";
-            out += &path.unwrap().file_name().to_str().unwrap();
+            out += &path.as_ref().unwrap().file_name().to_str().unwrap()[0..path.as_ref().unwrap().file_name().len()-5];
             out += "\","
         }
     }
@@ -25,23 +37,9 @@ fn get_factions_list() -> String {
     out
 }
 
-#[get("/factions/<faction>/<detachment>")]
-fn get_detachment(faction: &str, detachment: &str) -> String {
-    if !fs::exists("./detachments").unwrap()
-    {
-        fs::create_dir("./detachments").unwrap();
-    }
-    let mut out = String::new();
-    out += "{\"Detachment\":[";
-    for path in fs::read_dir("./detachments").unwrap() {
-        if let Ok(ref _entry) = path {
-            out += "\"";
-            out += &path.unwrap().file_name().to_str().unwrap();
-            out += "\","
-        }
-    }
-    out = out[0..(out.len()-1)].to_string() + "]}";
-    out
+#[get("/<faction>")]
+fn get_faction(faction: &str) -> String {
+    fs::read_to_string(&format!("{}\\factions\\{}.json", std::env::current_dir().unwrap().display() ,faction)).unwrap()
 }
 
 #[get("/lists")]
@@ -64,30 +62,19 @@ fn get_lists() -> String {
 }
 
 #[get("/lists/<name>")]
-fn get_list(name:String, response: String) -> rocket_contrib::json::Json<String> {
-    if !fs::exists("./lists").unwrap()
-    {
-        fs::create_dir("./lists").unwrap();
-    }
-    rocket_contrib::json::Json(fs::read_to_string(format!("/lists{}", name)).unwrap())
+fn get_list(name:String) -> String {
+    fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap()
 }
 
-#[post("/lists", data = "<new_list>")]
-async fn post_list(new_list: List) -> &'static str {
-    json_handler::file_out(List::build(
-        "Greenskin Killer Squad".to_string(),
-        "Kauyon".to_string(),
-        3000,
-        [
-            "\"Commander Shadowsun\": \"http://127.0.0.1:8000/models/commander_shadowsun.json\"".to_string(),
-            "\"Commander in Enforcer Battlesuit\": \"http://127.0.0.1:8000/models/enforcer_commander.json\"".to_string(),
-            "\"Commander in Coldstar Battlesuit\": \"http://127.0.0.1:8000/models/coldstar_commander.json\"".to_string()
-        ].to_vec(),
-    ), format!("/lists/{}.json", new_list.name)).await.unwrap();
-    "200 ok"
+#[get("/<model>")]
+fn get_model(model: String) -> String {
+    fs::read_to_string(&format!("{}\\models\\{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
 }
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![get_factions_list, get_detachment, get_lists,get_list, post_list])
+    rocket::build()
+        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list])
+        .mount("/factions", routes![get_faction])
+        .mount("/models", routes![get_model])
 }

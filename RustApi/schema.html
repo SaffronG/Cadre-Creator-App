@@ -1,0 +1,1084 @@
+<!doctype html>
+<html>
+  <head>
+    <title>wh40k-sheets-api</title>
+    <style type="text/css">
+      body {
+      	font-family: Trebuchet MS, sans-serif;
+      	font-size: 15px;
+      	color: #444;
+      	margin-right: 24px;
+      }
+      
+      h1	{
+      	font-size: 25px;
+      }
+      h2	{
+      	font-size: 20px;
+      }
+      h3	{
+      	font-size: 16px;
+      	font-weight: bold;
+      }
+      hr	{
+      	height: 1px;
+      	border: 0;
+      	color: #ddd;
+      	background-color: #ddd;
+      }
+      
+      .app-desc {
+        clear: both;
+        margin-left: 20px;
+      }
+      .param-name {
+        width: 100%;
+      }
+      .license-info {
+        margin-left: 20px;
+      }
+      
+      .license-url {
+        margin-left: 20px;
+      }
+      
+      .model {
+        margin: 0 0 0px 20px;
+      }
+      
+      .method {
+        margin-left: 20px;
+      }
+      
+      .method-notes	{
+      	margin: 10px 0 20px 0;
+      	font-size: 90%;
+      	color: #555;
+      }
+      
+      pre {
+        padding: 10px;
+        margin-bottom: 2px;
+      }
+      
+      .http-method {
+       text-transform: uppercase;
+      }
+      
+      pre.get {
+        background-color: #0f6ab4;
+      }
+      
+      pre.post {
+        background-color: #10a54a;
+      }
+      
+      pre.put {
+        background-color: #c5862b;
+      }
+      
+      pre.delete {
+        background-color: #a41e22;
+      }
+      
+      .huge	{
+      	color: #fff;
+      }
+      
+      pre.example {
+        background-color: #f3f3f3;
+        padding: 10px;
+        border: 1px solid #ddd;
+      }
+      
+      code {
+        white-space: pre;
+      }
+      
+      .nickname {
+        font-weight: bold;
+      }
+      
+      .method-path {
+        font-size: 1.5em;
+        background-color: #0f6ab4;
+      }
+      
+      .up {
+        float:right;
+      }
+      
+      .parameter {
+        width: 500px;
+      }
+      
+      .param {
+        width: 500px;
+        padding: 10px 0 0 20px;
+        font-weight: bold;
+      }
+      
+      .param-desc {
+        width: 700px;
+        padding: 0 0 0 20px;
+        color: #777;
+      }
+      
+      .param-type {
+        font-style: italic;
+      }
+      
+      .param-enum-header {
+      width: 700px;
+      padding: 0 0 0 60px;
+      color: #777;
+      font-weight: bold;
+      }
+      
+      .param-enum {
+      width: 700px;
+      padding: 0 0 0 80px;
+      color: #777;
+      font-style: italic;
+      }
+      
+      .field-label {
+        padding: 0;
+        margin: 0;
+        clear: both;
+      }
+      
+      .field-items	{
+      	padding: 0 0 15px 0;
+      	margin-bottom: 15px;
+      }
+      
+      .return-type {
+        clear: both;
+        padding-bottom: 10px;
+      }
+      
+      .param-header {
+        font-weight: bold;
+      }
+      
+      .method-tags {
+        text-align: right;
+      }
+      
+      .method-tag {
+        background: none repeat scroll 0% 0% #24A600;
+        border-radius: 3px;
+        padding: 2px 10px;
+        margin: 2px;
+        color: #FFF;
+        display: inline-block;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+  <h1>wh40k-sheets-api</h1>
+    <div class="app-desc">Warhammer API that stores all 10th edition datasheets and rules</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="hello@helloreverb.com">hello@helloreverb.com</a></div>
+    <div class="app-desc">Version: 0.1.1</div>
+    <div class="app-desc">BasePath:/SAFFRONGAMER167/WarhammerDatasheets/0.1.1</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#factionName"><code><span class="http-method">get</span> /factions/{faction}</code></a></li>
+  <li><a href="#factionsGet"><code><span class="http-method">get</span> /factions</code></a></li>
+  <li><a href="#getFactionById"><code><span class="http-method">get</span> /factions/{id}/models</code></a></li>
+  <li><a href="#getMissionTitle"><code><span class="http-method">get</span> /missioncards/{mission}</code></a></li>
+  <li><a href="#listName"><code><span class="http-method">post</span> /list/{name}</code></a></li>
+  <li><a href="#rulebookGet"><code><span class="http-method">get</span> /rulebook</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="factionName"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /factions/{faction}</code></pre></div>
+    <div class="method-summary">Returns a rules list about the faction (<span class="nickname">factionName</span>)</div>
+    <div class="method-notes">Returns all rules pertaining to the given faction</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">faction (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; factionId format: string</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_202">inline_response_202</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "Title" : "Title",
+  "Paragraphs" : [ "Paragraphs", "Paragraphs" ]
+}, {
+  "Title" : "Title",
+  "Paragraphs" : [ "Paragraphs", "Paragraphs" ]
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    A JSON model of the given faction rules
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="factionsGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /factions</code></pre></div>
+    <div class="method-summary">returns a list of all factions. (<span class="nickname">factionsGet</span>)</div>
+    <div class="method-notes">OK</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_200">inline_response_200</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "FactionName" : "FactionName",
+  "Detachments" : [ "Detachments", "Detachments" ]
+}, {
+  "FactionName" : "FactionName",
+  "Detachments" : [ "Detachments", "Detachments" ]
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    A JSON array of Warhammer Factions.
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getFactionById"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /factions/{id}/models</code></pre></div>
+    <div class="method-summary">Returns a list of all models and rules in the given faction (<span class="nickname">getFactionById</span>)</div>
+    <div class="method-notes">OK</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">id (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; factionId format: int64</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_200_1">inline_response_200_1</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "FactionName" : "FactionName",
+  "Detachment" : [ {
+    "Rule" : "Rule",
+    "Name" : "Name"
+  }, {
+    "Rule" : "Rule",
+    "Name" : "Name"
+  } ],
+  "Models" : [ {
+    "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+    "Leadership" : 5,
+    "Wargear_Abilites" : [ null, null ],
+    "Keywords" : [ "Keywords", "Keywords" ],
+    "Movement" : 0,
+    "Abilities" : {
+      "Core" : "Core",
+      "Faction" : "Faction",
+      "Other" : [ {
+        "Description" : "Description",
+        "Name" : "Name"
+      }, {
+        "Description" : "Description",
+        "Name" : "Name"
+      } ]
+    },
+    "Wounds" : 5,
+    "Melee_Weapons" : {
+      "Range" : "Range",
+      "Attacks" : 1,
+      "Damage" : 7,
+      "Balistic_Skill" : 1,
+      "Strength" : 1,
+      "Ap" : 6
+    },
+    "Unit_Composition" : "Unit_Composition",
+    "Name" : "Name",
+    "Ranged_Weapons" : [ {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    }, {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    } ],
+    "Toughness" : 6,
+    "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+    "Objective_Control" : 2,
+    "Save" : 1
+  }, {
+    "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+    "Leadership" : 5,
+    "Wargear_Abilites" : [ null, null ],
+    "Keywords" : [ "Keywords", "Keywords" ],
+    "Movement" : 0,
+    "Abilities" : {
+      "Core" : "Core",
+      "Faction" : "Faction",
+      "Other" : [ {
+        "Description" : "Description",
+        "Name" : "Name"
+      }, {
+        "Description" : "Description",
+        "Name" : "Name"
+      } ]
+    },
+    "Wounds" : 5,
+    "Melee_Weapons" : {
+      "Range" : "Range",
+      "Attacks" : 1,
+      "Damage" : 7,
+      "Balistic_Skill" : 1,
+      "Strength" : 1,
+      "Ap" : 6
+    },
+    "Unit_Composition" : "Unit_Composition",
+    "Name" : "Name",
+    "Ranged_Weapons" : [ {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    }, {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    } ],
+    "Toughness" : 6,
+    "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+    "Objective_Control" : 2,
+    "Save" : 1
+  } ]
+}, {
+  "FactionName" : "FactionName",
+  "Detachment" : [ {
+    "Rule" : "Rule",
+    "Name" : "Name"
+  }, {
+    "Rule" : "Rule",
+    "Name" : "Name"
+  } ],
+  "Models" : [ {
+    "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+    "Leadership" : 5,
+    "Wargear_Abilites" : [ null, null ],
+    "Keywords" : [ "Keywords", "Keywords" ],
+    "Movement" : 0,
+    "Abilities" : {
+      "Core" : "Core",
+      "Faction" : "Faction",
+      "Other" : [ {
+        "Description" : "Description",
+        "Name" : "Name"
+      }, {
+        "Description" : "Description",
+        "Name" : "Name"
+      } ]
+    },
+    "Wounds" : 5,
+    "Melee_Weapons" : {
+      "Range" : "Range",
+      "Attacks" : 1,
+      "Damage" : 7,
+      "Balistic_Skill" : 1,
+      "Strength" : 1,
+      "Ap" : 6
+    },
+    "Unit_Composition" : "Unit_Composition",
+    "Name" : "Name",
+    "Ranged_Weapons" : [ {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    }, {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    } ],
+    "Toughness" : 6,
+    "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+    "Objective_Control" : 2,
+    "Save" : 1
+  }, {
+    "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+    "Leadership" : 5,
+    "Wargear_Abilites" : [ null, null ],
+    "Keywords" : [ "Keywords", "Keywords" ],
+    "Movement" : 0,
+    "Abilities" : {
+      "Core" : "Core",
+      "Faction" : "Faction",
+      "Other" : [ {
+        "Description" : "Description",
+        "Name" : "Name"
+      }, {
+        "Description" : "Description",
+        "Name" : "Name"
+      } ]
+    },
+    "Wounds" : 5,
+    "Melee_Weapons" : {
+      "Range" : "Range",
+      "Attacks" : 1,
+      "Damage" : 7,
+      "Balistic_Skill" : 1,
+      "Strength" : 1,
+      "Ap" : 6
+    },
+    "Unit_Composition" : "Unit_Composition",
+    "Name" : "Name",
+    "Ranged_Weapons" : [ {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    }, {
+      "Range" : 7,
+      "Attacks" : 9,
+      "Damage" : 7,
+      "Weapon" : "Weapon",
+      "Balistic_Skill" : 3,
+      "Strength" : 2,
+      "Ap" : 4
+    } ],
+    "Toughness" : 6,
+    "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+    "Objective_Control" : 2,
+    "Save" : 1
+  } ]
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    a Json Array of model datasheets
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getMissionTitle"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /missioncards/{mission}</code></pre></div>
+    <div class="method-summary">returns all cardss of a the given mission (<span class="nickname">getMissionTitle</span>)</div>
+    <div class="method-notes">OK</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">mission (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; missionName format: string</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_202_2">inline_response_202_2</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "Description" : "Description",
+  "Scoring" : [ {
+    "Strategic" : 6,
+    "Fixed" : 0
+  }, {
+    "Strategic" : 6,
+    "Fixed" : 0
+  } ],
+  "Image" : "Image",
+  "Name" : "Name"
+}, {
+  "Description" : "Description",
+  "Scoring" : [ {
+    "Strategic" : 6,
+    "Fixed" : 0
+  }, {
+    "Strategic" : 6,
+    "Fixed" : 0
+  } ],
+  "Image" : "Image",
+  "Name" : "Name"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    A JSON model containing each mission card
+        
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="listName"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /list/{name}</code></pre></div>
+    <div class="method-summary">Sends the given list to the server to persis it for cloud storage. (<span class="nickname">listName</span>)</div>
+    <div class="method-notes">Sends the list as JSON for storage.</div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">name (required)</div>
+      
+            <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; listName format: string</div>    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#inline_response_202_3">inline_response_202_3</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "models" : [ {
+    "FactionName" : "FactionName",
+    "Detachment" : [ {
+      "Rule" : "Rule",
+      "Name" : "Name"
+    }, {
+      "Rule" : "Rule",
+      "Name" : "Name"
+    } ],
+    "Models" : [ {
+      "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+      "Leadership" : 5,
+      "Wargear_Abilites" : [ null, null ],
+      "Keywords" : [ "Keywords", "Keywords" ],
+      "Movement" : 0,
+      "Abilities" : {
+        "Core" : "Core",
+        "Faction" : "Faction",
+        "Other" : [ {
+          "Description" : "Description",
+          "Name" : "Name"
+        }, {
+          "Description" : "Description",
+          "Name" : "Name"
+        } ]
+      },
+      "Wounds" : 5,
+      "Melee_Weapons" : {
+        "Range" : "Range",
+        "Attacks" : 1,
+        "Damage" : 7,
+        "Balistic_Skill" : 1,
+        "Strength" : 1,
+        "Ap" : 6
+      },
+      "Unit_Composition" : "Unit_Composition",
+      "Name" : "Name",
+      "Ranged_Weapons" : [ {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      }, {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      } ],
+      "Toughness" : 6,
+      "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+      "Objective_Control" : 2,
+      "Save" : 1
+    }, {
+      "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+      "Leadership" : 5,
+      "Wargear_Abilites" : [ null, null ],
+      "Keywords" : [ "Keywords", "Keywords" ],
+      "Movement" : 0,
+      "Abilities" : {
+        "Core" : "Core",
+        "Faction" : "Faction",
+        "Other" : [ {
+          "Description" : "Description",
+          "Name" : "Name"
+        }, {
+          "Description" : "Description",
+          "Name" : "Name"
+        } ]
+      },
+      "Wounds" : 5,
+      "Melee_Weapons" : {
+        "Range" : "Range",
+        "Attacks" : 1,
+        "Damage" : 7,
+        "Balistic_Skill" : 1,
+        "Strength" : 1,
+        "Ap" : 6
+      },
+      "Unit_Composition" : "Unit_Composition",
+      "Name" : "Name",
+      "Ranged_Weapons" : [ {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      }, {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      } ],
+      "Toughness" : 6,
+      "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+      "Objective_Control" : 2,
+      "Save" : 1
+    } ]
+  }, {
+    "FactionName" : "FactionName",
+    "Detachment" : [ {
+      "Rule" : "Rule",
+      "Name" : "Name"
+    }, {
+      "Rule" : "Rule",
+      "Name" : "Name"
+    } ],
+    "Models" : [ {
+      "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+      "Leadership" : 5,
+      "Wargear_Abilites" : [ null, null ],
+      "Keywords" : [ "Keywords", "Keywords" ],
+      "Movement" : 0,
+      "Abilities" : {
+        "Core" : "Core",
+        "Faction" : "Faction",
+        "Other" : [ {
+          "Description" : "Description",
+          "Name" : "Name"
+        }, {
+          "Description" : "Description",
+          "Name" : "Name"
+        } ]
+      },
+      "Wounds" : 5,
+      "Melee_Weapons" : {
+        "Range" : "Range",
+        "Attacks" : 1,
+        "Damage" : 7,
+        "Balistic_Skill" : 1,
+        "Strength" : 1,
+        "Ap" : 6
+      },
+      "Unit_Composition" : "Unit_Composition",
+      "Name" : "Name",
+      "Ranged_Weapons" : [ {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      }, {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      } ],
+      "Toughness" : 6,
+      "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+      "Objective_Control" : 2,
+      "Save" : 1
+    }, {
+      "Faction_Keywords" : [ "Faction_Keywords", "Faction_Keywords" ],
+      "Leadership" : 5,
+      "Wargear_Abilites" : [ null, null ],
+      "Keywords" : [ "Keywords", "Keywords" ],
+      "Movement" : 0,
+      "Abilities" : {
+        "Core" : "Core",
+        "Faction" : "Faction",
+        "Other" : [ {
+          "Description" : "Description",
+          "Name" : "Name"
+        }, {
+          "Description" : "Description",
+          "Name" : "Name"
+        } ]
+      },
+      "Wounds" : 5,
+      "Melee_Weapons" : {
+        "Range" : "Range",
+        "Attacks" : 1,
+        "Damage" : 7,
+        "Balistic_Skill" : 1,
+        "Strength" : 1,
+        "Ap" : 6
+      },
+      "Unit_Composition" : "Unit_Composition",
+      "Name" : "Name",
+      "Ranged_Weapons" : [ {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      }, {
+        "Range" : 7,
+        "Attacks" : 9,
+        "Damage" : 7,
+        "Weapon" : "Weapon",
+        "Balistic_Skill" : 3,
+        "Strength" : 2,
+        "Ap" : 4
+      } ],
+      "Toughness" : 6,
+      "Wargear_Options" : [ "Wargear_Options", "Wargear_Options" ],
+      "Objective_Control" : 2,
+      "Save" : 1
+    } ]
+  } ],
+  "Detachment" : "Detachment",
+  "Name" : "Name"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    Sends a JSON model that the server can store
+        <a href="#inline_response_202_3">inline_response_202_3</a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="rulebookGet"></a>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /rulebook</code></pre></div>
+    <div class="method-summary">Returns a list of the basic rules for a game of Warhammer (<span class="nickname">rulebookGet</span>)</div>
+    <div class="method-notes">OK</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#inline_response_202_1">inline_response_202_1</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "Rules_Breakdown" : "Rules_Breakdown",
+  "Title" : "Title"
+}, {
+  "Rules_Breakdown" : "Rules_Breakdown",
+  "Title" : "Title"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">202</h4>
+    a Json model of the warhammer rules
+        
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#factionsidmodels_Abilities"><code>factionsidmodels_Abilities</code></a></li>
+    <li><a href="#factionsidmodels_Abilities_Other"><code>factionsidmodels_Abilities_Other</code></a></li>
+    <li><a href="#factionsidmodels_Detachment"><code>factionsidmodels_Detachment</code></a></li>
+    <li><a href="#factionsidmodels_Melee_Weapons"><code>factionsidmodels_Melee_Weapons</code></a></li>
+    <li><a href="#factionsidmodels_Models"><code>factionsidmodels_Models</code></a></li>
+    <li><a href="#factionsidmodels_Ranged_Weapons"><code>factionsidmodels_Ranged_Weapons</code></a></li>
+    <li><a href="#inline_response_200"><code>inline_response_200</code></a></li>
+    <li><a href="#inline_response_200_1"><code>inline_response_200_1</code></a></li>
+    <li><a href="#inline_response_202"><code>inline_response_202</code></a></li>
+    <li><a href="#inline_response_202_1"><code>inline_response_202_1</code></a></li>
+    <li><a href="#inline_response_202_2"><code>inline_response_202_2</code></a></li>
+    <li><a href="#inline_response_202_3"><code>inline_response_202_3</code></a></li>
+    <li><a href="#missioncardsmission_Scoring"><code>missioncardsmission_Scoring</code></a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="factionsidmodels_Abilities"><code>factionsidmodels_Abilities</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Core (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Faction (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Other (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Abilities_Other">array[factionsidmodels_Abilities_Other]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="factionsidmodels_Abilities_Other"><code>factionsidmodels_Abilities_Other</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="factionsidmodels_Detachment"><code>factionsidmodels_Detachment</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Rule (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="factionsidmodels_Melee_Weapons"><code>factionsidmodels_Melee_Weapons</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Range (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Attacks (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Balistic_Skill (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Strength (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Ap (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Damage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="factionsidmodels_Models"><code>factionsidmodels_Models</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Unit_Composition (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Keywords (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">Faction_Keywords (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">Movement (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Toughness (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Save (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Wounds (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Leadership (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Objective_Control (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Abilities (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Abilities">factionsidmodels_Abilities</a></span>  </div>
+<div class="param">Wargear_Abilites (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Abilities_Other">array[factionsidmodels_Abilities_Other]</a></span>  </div>
+<div class="param">Wargear_Options (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+<div class="param">Ranged_Weapons (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Ranged_Weapons">array[factionsidmodels_Ranged_Weapons]</a></span>  </div>
+<div class="param">Melee_Weapons (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Melee_Weapons">factionsidmodels_Melee_Weapons</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="factionsidmodels_Ranged_Weapons"><code>factionsidmodels_Ranged_Weapons</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Weapon (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Range (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Attacks (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Balistic_Skill (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Strength (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Ap (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Damage (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200"><code>inline_response_200</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">FactionName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Detachments (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_200_1"><code>inline_response_200_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">FactionName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Detachment (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Detachment">array[factionsidmodels_Detachment]</a></span>  </div>
+<div class="param">Models (optional)</div><div class="param-desc"><span class="param-type"><a href="#factionsidmodels_Models">array[factionsidmodels_Models]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_202"><code>inline_response_202</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Paragraphs (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_202_1"><code>inline_response_202_1</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Title (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Rules_Breakdown (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_202_2"><code>inline_response_202_2</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Description (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Scoring (optional)</div><div class="param-desc"><span class="param-type"><a href="#missioncardsmission_Scoring">array[missioncardsmission_Scoring]</a></span>  </div>
+<div class="param">Image (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="inline_response_202_3"><code>inline_response_202_3</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">Detachment (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">models (optional)</div><div class="param-desc"><span class="param-type"><a href="#inline_response_200_1">array[inline_response_200_1]</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="missioncardsmission_Scoring"><code>missioncardsmission_Scoring</code></a> <a class="up" href="#__Models">Up</a></h3>
+    
+    <div class="field-items">
+      <div class="param">Fixed (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">Strategic (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
