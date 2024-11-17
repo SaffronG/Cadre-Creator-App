@@ -3,7 +3,7 @@
 use std::{fs, vec};
 use RustApi::List;
 use rocket::serde::{Deserialize ,Serialize};
-use rocket_contrib::json::Json;
+// use rocket_contrib::json::Json;
 mod json_handler;
 
 #[get("/factions")]
@@ -64,12 +64,12 @@ fn get_lists() -> String {
 }
 
 #[get("/lists/<name>")]
-fn get_list(name:String, response: String) -> Json<List> {
+fn get_list(name:String, response: String) -> rocket_contrib::json::Json<String> {
     if !fs::exists("./lists").unwrap()
     {
         fs::create_dir("./lists").unwrap();
     }
-    rocket_contrib::json::Json(fs::read_to_string(format!("/lists{}", name)))
+    rocket_contrib::json::Json(fs::read_to_string(format!("/lists{}", name)).unwrap())
 }
 
 #[post("/lists", data = "<new_list>")]
