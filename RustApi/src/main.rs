@@ -1,19 +1,17 @@
 #[macro_use] extern crate rocket;
 
-use std::{fs, path, vec};
-use rocket::{fs::NamedFile, http::ext::IntoCollection};
-use RustApi::List;
-use serde_json::{Result, value};
-use serde::{Deserialize};
-mod json_handler;
+use std::{fs, vec};
+use rocket::fs::NamedFile;
+// use serde_json::{Result, value};
+use serde::Deserialize;
 use rocket::http::Header;
 use rocket::{Request, Response};
 use rocket::fairing::{Fairing, Info, Kind};
 
 #[derive(Deserialize, Debug)]
 struct Faction {
-    faction: String,
-    detachments: Vec<String>
+    _faction: String,
+    _detachments: Vec<String>
 }
 
 pub struct CORS;
