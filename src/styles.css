@@ -9,6 +9,7 @@
     --ochre-accent: #d5b807;
     --white-color: #fefbeb;
     --dark-text-color: #372f01;
+    --light-card-color: #fbefa4;
 }
 
 html {
@@ -115,6 +116,7 @@ main {
     color: var(--dark-color);
     justify-content: center;
     align-items: center;
+    flex-direction: column
 }
 
 .viewMore {
@@ -123,6 +125,7 @@ main {
     height: 5em;
     margin-left: auto;
     transition: .5s;
+    background-color: var(--main-ochre);
 }
 
 .viewMore:hover {
@@ -142,4 +145,23 @@ main {
 
 #welcomeHeader {
     padding-top: .5em;
+}
+
+.listModels {
+    overflow: auto;
+    background-color: var(--white-color);
+    border-radius: .5em;
+}
+
+.titleDiv {
+    display: flex;
+    width: 100%;
+    border-bottom-style: solid;
+    border-radius: .5em;
+    background-color: var(--white-color);
+}
+
+.pointsDescription {
+    background-color: white;
+    border-radius: .5em;
 }
