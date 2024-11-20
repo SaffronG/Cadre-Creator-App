@@ -84,7 +84,7 @@ fn get_lists() -> String {
 #[get("/lists/<name>")]
 fn get_list(name:String) -> String {
     match fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)) {
-        Ok(e) => fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap(),
+        Ok(_) => fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap(),
         Err(e) => format!("Invalid request, the requested list was not found\n\n{:#?}",e)
     }
 }
