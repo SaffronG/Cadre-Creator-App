@@ -19,19 +19,19 @@ struct List {
 pub struct CORS;
 
 #[rocket::async_trait]
-impl Fairing for CORS {
-    fn info(&self) -> Info {
-        Info {
+impl rocket::fairing::Fairing for CORS {
+    fn info(&self) -> rocket::fairing::Info {
+        rocket::fairing::Info {
             name: "Add CORS headers to responses",
-            kind: Kind::Response
+            kind: rocket::fairing::Kind::Response
         }
     }
 
-    async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
-        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
-        response.set_header(Header::new("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS"));
-        response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
-        response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
+    async fn on_response<'r>(&self, _request: &'r rocket::Request<'_>, response: &mut rocket::Response<'r>) {
+        response.set_header(rocket::http::Header::new("Access-Control-Allow-Origin", "*"));
+        response.set_header(rocket::http::Header::new("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS"));
+        response.set_header(rocket::http::Header::new("Access-Control-Allow-Headers", "*"));
+        response.set_header(rocket::http::Header::new("Access-Control-Allow-Credentials", "true"));
     }
 }
 
@@ -98,9 +98,9 @@ fn get_model(model: String) -> String {
 }
 
 // POST REQUESTS
-#[post("/", format = "json", data = "<new_list>")]
+#[post("/lists", format = "json", data = "<new_list>")]
 fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<String, std::io::Error> {
-    // Get the file name and serialize the struct into JSON
+    // Get the file name and serialize the struct into JSON \\
     let filename = format!("./lists/{}.json", &new_list.name);
     let serialized = serde_json::to_string(&new_list.into_inner()).unwrap();
     fs::write(filename, serialized)?;
@@ -110,8 +110,8 @@ fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<String, std::i
 fn rocket() -> _ {
     rocket::build()
         .attach(CORS)
-        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list])
+        .configure(rocket::Config::figment().merge(("port", 8000)))
+        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list, post_list])
         .mount("/factions", routes![get_faction])
         .mount("/models", routes![get_model])
-        .mount("/lists", routes![post_list])
 }

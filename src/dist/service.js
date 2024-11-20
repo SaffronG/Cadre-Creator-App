@@ -8,12 +8,17 @@ export async function get_list(name) {
     return await response.json();
 }
 export async function post_list(name, data) {
-    await fetch(`http://127.0.0.1:8000/lists/`, {
+    await fetch('http://127.0.0.1:8000/lists', {
         method: 'POST',
         headers: {
-            'Content-Type': "json",
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ name: data.Name, detachment: data.Detachment, points: data.Points, models: data.Models })
+        body: JSON.stringify({
+            "name": "My List",
+            "detachment": "Imperial Guard",
+            "points": 1000,
+            "models": { "Leman Russ": "http://blankUrl", "Bullgryn": "http://blankurl" }
+        })
     });
 }
 //# sourceMappingURL=service.js.map
