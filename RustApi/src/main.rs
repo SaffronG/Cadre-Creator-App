@@ -3,10 +3,7 @@
 use std::{fs, vec};
 use rocket::fs::NamedFile;
 // use serde_json::{Result, value};
-use serde::{Deserialize, Serialize, Serializer};
-use rocket::http::Header;
-use rocket::{Request, Response};
-use rocket::fairing::{Fairing, Info, Kind};
+use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug)]
 struct List {
