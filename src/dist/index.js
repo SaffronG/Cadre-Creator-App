@@ -1,5 +1,6 @@
 import { get_headers } from "./service.js";
 import { get_list } from "./service.js";
+import { post_list } from "./service.js";
 // import fs from 'fs'
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -17,7 +18,6 @@ async function renderListsPage() {
     let listsJson = await get_headers();
     let anchorListNode = document.createElement('div');
     listsJson.lists.forEach(list => {
-        console.log(list);
         let listContainderNode = document.createElement('div');
         listContainderNode.className = "listViewer";
         let titleDivNode = document.createElement('div');
@@ -36,14 +36,12 @@ async function renderListsPage() {
             displayOn = displayOn ? false : true;
             listDetails.style.display = displayOn ? "block" : "none";
             let currentList = await get_list(list);
-            console.log(currentList.Models);
             let pointsNode = document.createElement('p');
             pointsNode.textContent = currentList.Points;
             pointsNode.className = "pointsDescription";
             let modelDivNode = document.createElement('div');
             modelDivNode.className = "listModels";
             for (const key in currentList.Models) {
-                console.log("Key " + key);
                 let modelNode = document.createElement('p');
                 modelNode.className = "modelName";
                 modelNode.textContent = key;
@@ -63,6 +61,22 @@ async function renderListsPage() {
     let addNewListNode = document.createElement('button');
     addNewListNode.className = "viewMore";
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>';
+    addNewListNode.addEventListener("click", async () => {
+        const compListTest = {
+            "Name": "Tau Comp List",
+            "Detachment": "Mont'Ka",
+            "Points": 2000,
+            "Models": {
+                "Commander Farsight": "http://127.0.0.1:8000/models/commander_farsight.json",
+                "Commander Shadowsun": "http://127.0.0.1:8000/models/commander_shadowsun.json",
+                "Ethereal on Hover Drone": "http://127.0.0.1:8000/models/Ethereal.json",
+                "Coldstar Commander": "http://127.0.0.1:8000/models/coldstar_commander.json",
+            },
+        };
+        console.log("Posting list...");
+        post_list("Tau Comp List", compListTest);
+        alert("List has been saved!");
+    });
     anchorListNode.appendChild(addNewListNode);
     mainAnchorNode.replaceChildren(anchorListNode);
 }

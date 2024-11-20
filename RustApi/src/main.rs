@@ -3,15 +3,17 @@
 use std::{fs, vec};
 use rocket::fs::NamedFile;
 // use serde_json::{Result, value};
-use serde::Deserialize;
+use serde::{Deserialize, Serialize, Serializer};
 use rocket::http::Header;
 use rocket::{Request, Response};
 use rocket::fairing::{Fairing, Info, Kind};
 
-#[derive(Deserialize, Debug)]
-struct Faction {
-    _faction: String,
-    _detachments: Vec<String>
+#[derive(Deserialize, Serialize, Debug)]
+struct List {
+    name: String,
+    detachment: String,
+    points: u32,
+    models: Vec<String>,
 }
 
 pub struct CORS;
@@ -33,6 +35,7 @@ impl Fairing for CORS {
     }
 }
 
+// GET REQUESTS
 #[get("/")]
 async fn json_schema() -> NamedFile {
     NamedFile::open("schema.html").await.unwrap()
@@ -83,7 +86,10 @@ fn get_lists() -> String {
 
 #[get("/lists/<name>")]
 fn get_list(name:String) -> String {
-    fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap()
+    match fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)) {
+        Ok(e) => fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap(),
+        Err(e) => format!("Invalid request, the requested list was not found\n\n{:#?}",e)
+    }
 }
 
 #[get("/<model>")]
@@ -91,6 +97,15 @@ fn get_model(model: String) -> String {
     fs::read_to_string(&format!("{}\\models\\{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
 }
 
+// POST REQUESTS
+#[post("/", format = "json", data = "<new_list>")]
+fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<String, std::io::Error> {
+    // Get the file name and serialize the struct into JSON
+    let filename = format!("./lists/{}.json", &new_list.name);
+    let serialized = serde_json::to_string(&new_list.into_inner()).unwrap();
+    fs::write(filename, serialized)?;
+    Ok(format!("List created successfully"))
+}
 #[launch]
 fn rocket() -> _ {
     rocket::build()
@@ -98,4 +113,5 @@ fn rocket() -> _ {
         .mount("/", routes![json_schema, get_factions_list, get_lists, get_list])
         .mount("/factions", routes![get_faction])
         .mount("/models", routes![get_model])
+        .mount("/lists", routes![post_list])
 }
