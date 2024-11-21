@@ -4,7 +4,6 @@ export async function get_headers() {
 }
 
 export async function get_list(name: string) {
-    console.log(name)
     let response = await fetch(`http://127.0.0.1:8000/lists/${name}`)
     return await response.json()
 }
@@ -16,10 +15,15 @@ export async function post_list(name: string, data) {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            "name": "My List",
-            "detachment": "Imperial Guard",
-            "points": 1000,
-            "models": {"Leman Russ": "http://blankUrl", "Bullgryn": "http://blankurl"}
+            "Name": "Comp list",
+            "Detachment": "Mont'Ka",
+            "Points": 1000,
+            "Models": ["Ethereal", "Commander Shadowsun"]
         })
     })
+}
+
+export async function get_profile(name: string) {
+    const response = await fetch('http://127.0.0.1:8000/profiles')
+    return await response.json()
 }

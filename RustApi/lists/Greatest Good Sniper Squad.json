@@ -1,10 +1,6 @@
 {
-    "Name": "Greatest Good Sniper Squad",
-    "Detachment": "Kauyon",
-    "Points": 2000,
-    "Models": {
-        "Commander Shadowsun": "http://127.0.0.1:8000/models/commander_shadowsun.json",
-        "Enforcer Commander": "http://127.0.0.1:8000/models/enforcer_commander.json",
-        "Coldstar Commander": "http://127.0.0.1:8000/models/coldstar_commander.json"
-    }
+  "Name": "Greatest Good Sniper Squad",
+  "Detachment": "Kauyon",
+  "Points": 2000,
+  "Models": ["Commander Shadowsun", "Enforcer Commander", "Coldstar Commander"]
 }

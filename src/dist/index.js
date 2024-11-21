@@ -41,12 +41,12 @@ async function renderListsPage() {
             pointsNode.className = "pointsDescription";
             let modelDivNode = document.createElement('div');
             modelDivNode.className = "listModels";
-            for (const key in currentList.Models) {
+            currentList.Models.forEach(model => {
                 let modelNode = document.createElement('p');
                 modelNode.className = "modelName";
-                modelNode.textContent = key;
+                modelNode.textContent = model;
                 modelDivNode.appendChild(modelNode);
-            }
+            });
             // let ellipsesNode: HTMLParagraphElement = document.createElement('p')
             // ellipsesNode.textContent = "..."
             // ellipsesNode.className = "modelName"
@@ -63,19 +63,18 @@ async function renderListsPage() {
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>';
     addNewListNode.addEventListener("click", async () => {
         const compListTest = {
-            "Name": "Tau Comp List",
+            "Name": "Comp Tau List",
             "Detachment": "Mont'Ka",
             "Points": 2000,
-            "Models": {
-                "Commander Farsight": "http://127.0.0.1:8000/models/commander_farsight.json",
-                "Commander Shadowsun": "http://127.0.0.1:8000/models/commander_shadowsun.json",
-                "Ethereal on Hover Drone": "http://127.0.0.1:8000/models/Ethereal.json",
-                "Coldstar Commander": "http://127.0.0.1:8000/models/coldstar_commander.json",
-            },
+            "Models": [
+                "Commander Farsight",
+                "Commander Shadowsun",
+                "Ethereal on Hover Drone",
+                "Coldstar Commander",
+            ],
         };
-        console.log("Posting list...");
-        post_list("Tau Comp List", compListTest);
-        alert("List has been saved!");
+        await post_list("Tau Comp List", compListTest);
+        renderListsPage();
     });
     anchorListNode.appendChild(addNewListNode);
     mainAnchorNode.replaceChildren(anchorListNode);

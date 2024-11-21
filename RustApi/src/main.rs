@@ -7,10 +7,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug)]
 struct List {
-    name: String,
-    detachment: String,
-    points: u32,
-    models: Vec<String>,
+    Name: String,
+    Detachment: String,
+    Points: u32,
+    Models: Vec<String>,
 }
 
 pub struct CORS;
@@ -26,7 +26,8 @@ impl rocket::fairing::Fairing for CORS {
 
     async fn on_response<'r>(&self, _request: &'r rocket::Request<'_>, response: &mut rocket::Response<'r>) {
         response.set_header(rocket::http::Header::new("Access-Control-Allow-Origin", "*"));
-        response.set_header(rocket::http::Header::new("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS"));
+        response.set_header(rocket::http::Header::new("Access-Control-Allow-Methods", "POST, GET, PATCH, OPTIONS, PUT"));
+        response.set_header(rocket::http::Header::new("Allow", "POST, GET, PATCH, OPTIONS, PUT"));
         response.set_header(rocket::http::Header::new("Access-Control-Allow-Headers", "*"));
         response.set_header(rocket::http::Header::new("Access-Control-Allow-Credentials", "true"));
     }
@@ -47,6 +48,25 @@ fn get_factions_list() -> String {
     let mut out = String::new();
     out += "{\"Factions\":[";
     for path in fs::read_dir("./factions").unwrap() {
+        if let Ok(ref _entry) = path {
+            out += "\"";
+            out += &path.as_ref().unwrap().file_name().to_str().unwrap()[0..path.as_ref().unwrap().file_name().len()-5];
+            out += "\","
+        }
+    }
+    out = out[0..(out.len()-1)].to_string() + "]}";
+    out
+}
+
+#[get("/")]
+fn get_profiles() -> String {
+    if !fs::exists("./configs").unwrap()
+    {
+        fs::create_dir("./configs").unwrap();
+    }
+    let mut out = String::new();
+    out += "{\"Settings-Configs\":[";
+    for path in fs::read_dir("./configs").unwrap() {
         if let Ok(ref _entry) = path {
             out += "\"";
             out += &path.as_ref().unwrap().file_name().to_str().unwrap()[0..path.as_ref().unwrap().file_name().len()-5];
@@ -94,11 +114,21 @@ fn get_model(model: String) -> String {
     fs::read_to_string(&format!("{}\\models\\{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
 }
 
+#[get("/<profile>")]
+fn get_profile(profile: String) -> String {
+    fs::read_to_string(&format!(".\\configs\\{}.json", profile)).unwrap()
+}
+
+// OPTIONS HANDLERS
+#[rocket::options("/lists")]
+fn cors_post_handler() {
+}
+
 // POST REQUESTS
 #[post("/lists", format = "json", data = "<new_list>")]
 fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<String, std::io::Error> {
     // Get the file name and serialize the struct into JSON \\
-    let filename = format!("./lists/{}.json", &new_list.name);
+    let filename = format!("./lists/{}.json", &new_list.Name);
     let serialized = serde_json::to_string(&new_list.into_inner()).unwrap();
     fs::write(filename, serialized)?;
     Ok(format!("List created successfully"))
@@ -108,7 +138,8 @@ fn rocket() -> _ {
     rocket::build()
         .attach(CORS)
         .configure(rocket::Config::figment().merge(("port", 8000)))
-        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list, post_list])
+        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list, post_list, cors_post_handler])
         .mount("/factions", routes![get_faction])
         .mount("/models", routes![get_model])
+        .mount("/profiles", routes![get_profiles, get_profile])
 }

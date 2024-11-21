@@ -1,7 +1,10 @@
 import { get_headers } from "./service.js"
 import { get_list } from "./service.js"
 import { post_list } from "./service.js"
+import { get_profile } from "./service.js"
 // import fs from 'fs'
+
+let currentUser = "default"
 
 const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
@@ -57,17 +60,17 @@ async function renderListsPage() {
             let modelDivNode: HTMLDivElement = document.createElement('div')
             modelDivNode.className = "listModels"
 
-            for (const key in currentList.Models) {
+            currentList.Models.forEach(model => {
                 let modelNode: HTMLParagraphElement = document.createElement('p')
                 modelNode.className = "modelName"
-                modelNode.textContent = key
+                modelNode.textContent = model
                 modelDivNode.appendChild(modelNode)
-            }
+            })
 
             // let ellipsesNode: HTMLParagraphElement = document.createElement('p')
             // ellipsesNode.textContent = "..."
             // ellipsesNode.className = "modelName"
-
+            
             listDetails.replaceChildren(pointsNode, modelDivNode)
         })
 
@@ -87,21 +90,18 @@ async function renderListsPage() {
     addNewListNode.addEventListener("click", async () => {
         const compListTest = 
         {
-            "Name": "Tau Comp List",
+            "Name": "Comp Tau List",
             "Detachment": "Mont'Ka",
             "Points": 2000,
-            "Models": {
-                "Commander Farsight": "http://127.0.0.1:8000/models/commander_farsight.json",
-                "Commander Shadowsun": "http://127.0.0.1:8000/models/commander_shadowsun.json",
-                "Ethereal on Hover Drone": "http://127.0.0.1:8000/models/Ethereal.json",
-                "Coldstar Commander": "http://127.0.0.1:8000/models/coldstar_commander.json",
-            },
+            "Models": [
+                "Commander Farsight",
+                "Commander Shadowsun",
+                "Ethereal on Hover Drone",
+                "Coldstar Commander",
+            ],
         }
-
-        console.log("Posting list...")
-        post_list("Tau Comp List", compListTest)
-
-        alert("List has been saved!")
+        await post_list("Tau Comp List", compListTest)
+        renderListsPage()
     })
 
     anchorListNode.appendChild(addNewListNode)
@@ -110,7 +110,8 @@ async function renderListsPage() {
 }
 
 async function renderSettingsPage() {
-
+    const settings = await get_profile(currentUser)
+    
 }
 
 function renderDownloadsPage() {
