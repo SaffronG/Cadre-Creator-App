@@ -6,6 +6,7 @@ use rocket::fs::NamedFile;
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, Serialize, Debug)]
+#[allow(non_snake_case)]
 struct List {
     Name: String,
     Detachment: String,
@@ -14,7 +15,6 @@ struct List {
 }
 
 pub struct CORS;
-
 #[rocket::async_trait]
 impl rocket::fairing::Fairing for CORS {
     fn info(&self) -> rocket::fairing::Info {
@@ -119,6 +119,30 @@ fn get_profile(profile: String) -> String {
     fs::read_to_string(&format!(".\\configs\\{}.json", profile)).unwrap()
 }
 
+#[get("/<rule>")]
+fn get_rule(rule: String) -> String {
+    fs::read_to_string(&format!(".\\rules\\{}.json", rule)).unwrap()
+}
+
+#[get("/")]
+fn get_rules() -> String {
+    if !fs::exists("./rules").unwrap()
+    {
+        fs::create_dir("./rules").unwrap();
+    }
+    let mut out = String::new();
+    out += "{\"lists\":[";
+    for path in fs::read_dir("./rules").unwrap() {
+        if let Ok(ref _entry) = path {
+            out += "\"";
+            out += &path.as_ref().unwrap().file_name().to_str().unwrap()[0..path.as_ref().unwrap().file_name().len()-5];
+            out += "\","
+        }
+    }
+    out = out[0..(out.len()-1)].to_string() + "]}";
+    out
+}
+
 // OPTIONS HANDLERS
 #[rocket::options("/lists")]
 fn cors_post_handler() {
@@ -142,4 +166,5 @@ fn rocket() -> _ {
         .mount("/factions", routes![get_faction])
         .mount("/models", routes![get_model])
         .mount("/profiles", routes![get_profiles, get_profile])
+        .mount("/rules", routes![get_rules, get_rule])
 }

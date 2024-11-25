@@ -1,0 +1,13 @@
+{
+    "victory_conditions": {
+      "primary_objectives": {
+        "description": "Objectives that players must achieve to score victory points, such as holding key positions."
+      },
+      "secondary_objectives": {
+        "description": "Optional objectives chosen by players at the start of the game for additional victory points."
+      },
+      "end_game": {
+        "description": "The winner is determined by the player with the most victory points at the end of the game."
+      }
+    }
+  }  

@@ -1,167 +1,267 @@
 @font-face {
-    font-family: tauFont;
-    src: url(assets/Tau-mmP2.ttf);
+  font-family: tauFont;
+  src: url(assets/Tau-mmP2.ttf);
 }
 
 :root {
-    --dark-color: #171400;
-    --main-ochre: #f7d60d;
-    --ochre-accent: #d5b807;
-    --white-color: #fefbeb;
-    --dark-text-color: #372f01;
-    --light-card-color: #fbefa4;
+  --dark-color: #171400;
+  --main-ochre: #f7d60d;
+  --ochre-accent: #d5b807;
+  --white-color: #fefbeb;
+  --dark-text-color: #372f01;
+  --light-card-color: #fbefa4;
+  --link-color: rgb(231, 14, 14);
+  --hover-link-color: rgb(228, 214, 214);
 }
 
 html {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    background-color: var(--dark-color);
-    color: var(--white-color);
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-color: var(--dark-color);
+  color: var(--white-color);
 }
 
 .nav-bar {
-    position: fixed;width: 100%;
-    background-color: var(--main-ochre);
-    height: 5em;
-    box-shadow: 0em .25em var(--white-color);
-    color: var(--dark-text-color);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    justify-content: center;
+  position: fixed;
+  width: 100%;
+  background-color: var(--main-ochre);
+  height: 5em;
+  box-shadow: 0em 0.25em var(--white-color);
+  color: var(--dark-text-color);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
 }
 main {
-    padding: 1em;
-    text-align: center;
+  padding: 1em;
+  text-align: center;
 }
 
 #bottom-bar {
-    margin: 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: .5em;
-    display: flex;
-    background-color: var(--main-ochre);
-    color: var(--dark-text-color);
-    list-style: none;
-    height: 2em;
-    justify-items: center;
-    align-items: center;
-    border-top-style: solid;
-    border-top-color: var(--white-color);
-    border-width: .25em;
-    justify-content: space-evenly;
+  margin: 0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  background-color: var(--main-ochre);
+  color: var(--dark-text-color);
+  list-style: none;
+  height: 2em;
+  justify-items: center;
+  align-items: center;
+  border-top-style: solid;
+  border-top-color: var(--white-color);
+  border-width: 0.25em;
+  justify-content: space-evenly;
 }
 
 #bottom-bar a {
-    text-decoration: none;
-    transition: .5s;
-    color: var(--dark-text-color);
+  text-decoration: none;
+  transition: 0.5s;
+  color: var(--dark-text-color);
 }
 
 #bottom-bar a:hover {
-    color: #fefbeb;
-    font-size: larger;
+  color: #fefbeb;
+  font-size: larger;
 }
 
 #spacer {
-    height: 3.5em;
+  height: 3.5em;
 }
 
 #plus-icon {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--dark-color);
-    width: 5em;
-    border-radius: 5em;
-    height: 5em;
-    text-align: center;
-    justify-content: center;
-    margin-bottom: 1em;
-    border-style: solid;
-    border-color: var(--white-color);
-    font-size: large;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-color);
+  width: 5em;
+  border-radius: 5em;
+  height: 5em;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 1em;
+  border-style: solid;
+  border-color: var(--white-color);
+  font-size: large;
 }
 
 #plus-icon:hover {
-    background-color: var(--dark-text-color);
+  background-color: var(--dark-text-color);
 }
 
 .tau-font-decor {
-    font-family: tauFont;
-    writing-mode: vertical-rl;
-    text-orientation: upright;
+  font-family: tauFont;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
 }
 
 #homeButton {
-    text-decoration: none;
-    color: var(--dark-text-color);
+  text-decoration: none;
+  color: var(--dark-text-color);
 }
 
 .listViewer {
-    display: flex;
-    margin: 1.5em;
-    border-style: solid;
-    border-radius: .7em;
-    background-color: var(--ochre-accent);
-    color: var(--dark-color);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column
+  display: flex;
+  margin: 1.5em;
+  border-style: solid;
+  border-radius: 0.7em;
+  background-color: var(--ochre-accent);
+  color: var(--dark-color);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .viewMore {
-    border-radius: .5em;
-    width: 5em;
-    height: 5em;
-    margin-left: auto;
-    transition: .5s;
-    background-color: var(--main-ochre);
+  border-radius: 0.5em;
+  width: 5em;
+  height: 5em;
+  margin-left: auto;
+  transition: 0.5s;
+  background-color: var(--main-ochre);
 }
 
 .viewMore:hover {
-    background-color: rgb(19, 171, 173);
-    color: rgb(27, 222, 226);
+  background-color: rgb(19, 171, 173);
+  color: rgb(27, 222, 226);
 }
 
 .listText {
-    margin-left: 2em;
-    font-size: larger;
-    font-weight: bolder;
+  margin-left: 2em;
+  font-size: larger;
+  font-weight: bolder;
 }
 
 #examplePlus {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 #welcomeHeader {
-    padding-top: .5em;
+  padding-top: 0.5em;
 }
 
 .listModels {
-    overflow: auto;
-    background-color: var(--white-color);
-    border-radius: .5em;
+  overflow: auto;
+  background-color: var(--white-color);
+  border-radius: 0.5em;
 }
 
 .titleDiv {
-    display: flex;
-    width: 100%;
-    border-bottom-style: solid;
-    border-radius: .5em;
-    background-color: var(--white-color);
+  display: flex;
+  width: 100%;
+  border-bottom-style: solid;
+  border-radius: 0.5em;
+  background-color: var(--white-color);
 }
 
 .pointsDescription {
-    background-color: white;
-    border-radius: .5em;
+  background-color: white;
+  border-radius: 0.5em;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.setting {
+  display: flex;
+  padding-top: 1em;
+  justify-content: space-evenly;
+  align-items: center;
+  border-bottom-style: solid;
+  border-bottom-width: .5px;
+}
+
+.downloads {
+  display: flex;
+  flex-direction: column;
+  padding-top: .5em;
+}
+
+.downloadLink {
+  color: var(--link-color);
+  transition: .5s;
+  border-style: solid;
+  border-radius: .5em;
+  margin: .5em;
+  text-decoration: none;
+}
+
+.downloadLink:hover {
+  color: var(--hover-link-color);
+}
+
+#titleHeader {
+  font-size: larger;
+  margin-top: 1em;
+  border-bottom-style: solid;
+  padding: .5em;
 }

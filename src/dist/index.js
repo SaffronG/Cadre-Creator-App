@@ -1,7 +1,5 @@
-import { get_headers } from "./service.js";
-import { get_list } from "./service.js";
-import { post_list } from "./service.js";
-// import fs from 'fs'
+import { get_headers, get_list, post_list, get_profile, get_rules } from "./service.js";
+let currentUser = "default";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const contents = urlParams.get('contents');
@@ -80,12 +78,73 @@ async function renderListsPage() {
     mainAnchorNode.replaceChildren(anchorListNode);
 }
 async function renderSettingsPage() {
+    const settings = await get_profile("default");
+    const settingsDivNode = document.createElement('div');
+    settingsDivNode.id = "settingsDiv";
+    for (const setting in settings) {
+        console.log(setting);
+        const settingItemNode = document.createElement('div');
+        settingItemNode.className = "setting";
+        const settingHeaderNode = document.createElement('h2');
+        settingHeaderNode.innerText = setting;
+        settingHeaderNode.className = "settingLabel";
+        const settingToggleButton = document.createElement('div');
+        settingToggleButton.innerHTML = '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>';
+        settingItemNode.appendChild(settingHeaderNode);
+        settingItemNode.appendChild(settingToggleButton);
+        settingsDivNode.appendChild(settingItemNode);
+    }
+    mainAnchorNode.replaceChildren(settingsDivNode);
 }
-function renderDownloadsPage() {
+async function renderDownloadsPage() {
+    const lists = await get_headers();
+    const downloadsDivNode = document.createElement('div');
+    downloadsDivNode.className = 'downloads';
+    lists.lists.forEach(list => {
+        const downloadLinkNode = document.createElement('a');
+        downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-download"></i>';
+        downloadLinkNode.href = `/pdf.html?file=${list}`;
+        downloadLinkNode.className = 'downloadLink';
+        downloadsDivNode.appendChild(downloadLinkNode);
+    });
+    const titleHeader = document.createElement('div');
+    titleHeader.id = "titleHeader";
+    titleHeader.textContent = "Downloads";
+    mainAnchorNode.replaceChildren(titleHeader, downloadsDivNode);
 }
-function renderExportPage() {
+async function renderExportPage() {
+    const lists = await get_headers();
+    const downloadsDivNode = document.createElement('div');
+    downloadsDivNode.className = 'downloads';
+    lists.lists.forEach(list => {
+        const downloadLinkNode = document.createElement('a');
+        downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-arrow-up-from-bracket"></i>';
+        downloadLinkNode.href = `/pdf.html?file=${list}`;
+        downloadLinkNode.className = 'downloadLink';
+        downloadsDivNode.appendChild(downloadLinkNode);
+    });
+    const titleHeader = document.createElement('div');
+    titleHeader.id = "titleHeader";
+    titleHeader.textContent = "Exports";
+    mainAnchorNode.replaceChildren(titleHeader, downloadsDivNode);
 }
-function renderRulesPage() {
+async function renderRulesPage() {
+    const rules = await get_rules();
+    const rulesDivNode = document.createElement('div');
+    rulesDivNode.id = "rules";
+    rules.lists.forEach(rule => {
+        const ruleCardNode = document.createElement('div');
+        ruleCardNode.className = "ruleCard";
+        const cardNodeHeader = document.createElement('h2');
+        cardNodeHeader.textContent = rule;
+        cardNodeHeader.className = "ruleHeader";
+        let plusButton = document.createElement('button');
+        plusButton.className = "viewMore";
+        plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+        ruleCardNode.replaceChildren(cardNodeHeader, plusButton);
+        rulesDivNode.appendChild(ruleCardNode);
+    });
+    mainAnchorNode.replaceChildren(rulesDivNode);
 }
 switch (contents) {
     case "export":

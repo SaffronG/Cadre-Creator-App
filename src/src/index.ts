@@ -1,8 +1,5 @@
-import { get_headers } from "./service.js"
-import { get_list } from "./service.js"
-import { post_list } from "./service.js"
-import { get_profile } from "./service.js"
-// import fs from 'fs'
+import { getDefaultAutoSelectFamilyAttemptTimeout } from "net"
+import { get_headers, get_list, post_list, get_profile, get_rules, get_rule } from "./service.js"
 
 let currentUser = "default"
 
@@ -110,20 +107,92 @@ async function renderListsPage() {
 }
 
 async function renderSettingsPage() {
-    const settings = await get_profile(currentUser)
-    
+    const settings = await get_profile("default")
+    const settingsDivNode: HTMLDivElement = document.createElement('div') 
+    settingsDivNode.id = "settingsDiv"
+
+    for (const setting in settings) {
+        console.log(setting)
+        const settingItemNode: HTMLDivElement = document.createElement('div')
+        settingItemNode.className = "setting"
+
+        const settingHeaderNode: HTMLHeadElement = document.createElement('h2')
+        settingHeaderNode.innerText = setting
+        settingHeaderNode.className = "settingLabel"
+
+        const settingToggleButton: HTMLDivElement = document.createElement('div')
+        settingToggleButton.innerHTML = '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>'
+
+        settingItemNode.appendChild(settingHeaderNode)
+        settingItemNode.appendChild(settingToggleButton)
+        settingsDivNode.appendChild(settingItemNode)
+    }
+
+    mainAnchorNode.replaceChildren(settingsDivNode)
 }
 
-function renderDownloadsPage() {
+async function renderDownloadsPage() {
+    const lists = await get_headers()
+    const downloadsDivNode: HTMLDivElement = document.createElement('div')
+    downloadsDivNode.className = 'downloads'
 
+    lists.lists.forEach(list => {
+        const downloadLinkNode: HTMLAnchorElement = document.createElement('a')
+        downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-download"></i>'
+        downloadLinkNode.href = `/pdf.html?file=${list}`
+        downloadLinkNode.className = 'downloadLink'
+        downloadsDivNode.appendChild(downloadLinkNode)
+    });
+
+    const titleHeader: HTMLHeadElement = document.createElement('div')
+    titleHeader.id = "titleHeader"
+    titleHeader.textContent = "Downloads"
+
+    mainAnchorNode.replaceChildren(titleHeader, downloadsDivNode)
 }
 
-function renderExportPage() {
+async function renderExportPage() {
+    const lists = await get_headers()
+    const downloadsDivNode: HTMLDivElement = document.createElement('div')
+    downloadsDivNode.className = 'downloads'
 
+    lists.lists.forEach(list => {
+        const downloadLinkNode: HTMLAnchorElement = document.createElement('a')
+        downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-arrow-up-from-bracket"></i>'
+        downloadLinkNode.href = `/pdf.html?file=${list}`
+        downloadLinkNode.className = 'downloadLink'
+        downloadsDivNode.appendChild(downloadLinkNode)
+    });
+
+    const titleHeader: HTMLHeadElement = document.createElement('div')
+    titleHeader.id = "titleHeader"
+    titleHeader.textContent = "Exports"
+
+    mainAnchorNode.replaceChildren(titleHeader, downloadsDivNode)
 }
 
-function renderRulesPage() {
+async function renderRulesPage() {
+    const rules = await get_rules()
+    const rulesDivNode: HTMLDivElement = document.createElement('div')
+    rulesDivNode.id = "rules"
 
+    rules.lists.forEach(rule => {
+        const ruleCardNode: HTMLDivElement = document.createElement('div')
+        ruleCardNode.className = "ruleCard"
+        
+        const cardNodeHeader: HTMLHeadElement = document.createElement('h2')
+        cardNodeHeader.textContent = rule
+        cardNodeHeader.className  = "ruleHeader"
+
+        let plusButton: HTMLButtonElement = document.createElement('button')
+        plusButton.className = "viewMore"
+        plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>'
+        
+        ruleCardNode.replaceChildren(cardNodeHeader, plusButton)
+        rulesDivNode.appendChild(ruleCardNode)
+    });
+
+    mainAnchorNode.replaceChildren(rulesDivNode)
 }
 
 switch (contents) {
