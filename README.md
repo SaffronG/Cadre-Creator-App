@@ -19,11 +19,11 @@ To further this project, I want to use typescript, and host my api so that I can
 - [x] set up typescript pipeline
 > Nov 16 (30%)
 - [x] create list view page
-- [ ] be able to add a blank list
-- [ ] be able to add a model to the list and set the name
+- [x] be able to add a blank list
+- [x] be able to add a model to the list and set the name
 > Nov 20 (45%)
-- [ ] create export and download as pdf functionality
-- [ ] populate the settings page
+- [x] create export and download as pdf functionality
+- [x] populate the settings page
 - [ ] create alternate themes
 > Nov 23 (60%)
 - [ ] user can create an account
@@ -31,13 +31,13 @@ To further this project, I want to use typescript, and host my api so that I can
 - [ ] user can save their list on the server 
 > Nov 26 (75%)
 - [x] populate rules api
-- [ ] user can view the given rules
+- [x] user can view the given rules
 - [ ] user can view all available models and their images
 > December 4 (100%)
--  [ ] iron out functionality
--  [ ] iron out styling
--  [ ] package as docker
--  [ ] target for mobile development
+- [ ] iron out functionality
+- [x] iron out styling
+- [x] package as docker
+- [x] target for mobile development
 
 <hr>
 
