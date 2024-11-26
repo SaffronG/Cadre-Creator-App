@@ -1,6 +1,6 @@
 #[macro_use] extern crate rocket;
 
-use std::{fs, vec};
+use std::{fs, path::Path, vec};
 use rocket::fs::NamedFile;
 // use serde_json::{Result, value};
 use serde::{Deserialize, Serialize};
@@ -79,7 +79,7 @@ fn get_profiles() -> String {
 
 #[get("/<faction>")]
 fn get_faction(faction: &str) -> String {
-    fs::read_to_string(&format!("{}\\factions\\{}.json", std::env::current_dir().unwrap().display() ,faction)).unwrap()
+    fs::read_to_string(&format!("{}/factions/{}.json", std::env::current_dir().unwrap().display() ,faction)).unwrap()
 }
 
 #[get("/lists")]
@@ -103,9 +103,9 @@ fn get_lists() -> String {
 
 #[get("/lists/<name>")]
 fn get_list(name:String) -> String {
-    match fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)) {
-        Ok(_) => fs::read_to_string(&format!("{}\\lists\\{}.json", std::env::current_dir().unwrap().display() , name)).unwrap(),
-        Err(e) => format!("Invalid request, the requested list was not found\n\n{:#?}",e)
+    match fs::read_to_string(Path::new(&format!(".\\lists\\{}.json", name))) {
+        Ok(_) => fs::read_to_string(Path::new(&format!(".\\lists\\{}.json", name))).unwrap().to_string(),
+        Err(e) => format!("Invalid request, the requested list was not found: {}\n\n{:#?}", name, e)
     }
 }
 

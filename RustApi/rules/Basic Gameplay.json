@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Command Phase",
+    "description": "Players generate command points and resolve abilities that activate during this phase."
+  },
+  {
+    "name": "Movement Phase",
+    "description": "Players move their units across the battlefield, adhering to movement restrictions and terrain rules."
+  },
+  {
+    "name": "Psychic Phase",
+    "description": "Psyker units cast psychic powers to influence the battlefield, using dice rolls to determine success."
+  },
+  {
+    "name": "Shooting Phase",
+    "description": "Units use ranged weapons to attack enemy models within line of sight and range."
+  },
+  {
+    "name": "Charge Phase",
+    "description": "Players declare charges and attempt to engage enemy units in close combat."
+  },
+  {
+    "name": "Fight Phase",
+    "description": "Units engage in melee combat, resolving attacks in an alternating sequence."
+  },
+  {
+    "name": "Morale Phase",
+    "description": "Players test the morale of their units to determine if models flee due to losses."
+  }
+]

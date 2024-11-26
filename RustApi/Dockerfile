@@ -70,6 +70,7 @@ COPY configs /app/configs
 COPY factions /app/factions
 COPY lists /app/lists
 COPY schema.html /app
+COPY rules /app/rules
 
 # Configure rocket to listen on all interfaces.
 ENV ROCKET_ADDRESS=0.0.0.0

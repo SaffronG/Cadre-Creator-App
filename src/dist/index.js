@@ -1,4 +1,4 @@
-import { get_headers, get_list, post_list, get_profile, get_rules } from "./service.js";
+import { get_headers, get_list, get_profile, get_rules, get_rule } from "./service.js";
 let currentUser = "default";
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
@@ -60,19 +60,7 @@ async function renderListsPage() {
     addNewListNode.className = "viewMore";
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>';
     addNewListNode.addEventListener("click", async () => {
-        const compListTest = {
-            "Name": "Comp Tau List",
-            "Detachment": "Mont'Ka",
-            "Points": 2000,
-            "Models": [
-                "Commander Farsight",
-                "Commander Shadowsun",
-                "Ethereal on Hover Drone",
-                "Coldstar Commander",
-            ],
-        };
-        await post_list("Tau Comp List", compListTest);
-        renderListsPage();
+        window.location.replace(`/builder.html`);
     });
     anchorListNode.appendChild(addNewListNode);
     mainAnchorNode.replaceChildren(anchorListNode);
@@ -141,6 +129,20 @@ async function renderRulesPage() {
         let plusButton = document.createElement('button');
         plusButton.className = "viewMore";
         plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+        plusButton.addEventListener("click", async () => {
+            const ruleJson = await get_rule(rule);
+            const rulesInfoDiv = document.createElement('div');
+            ruleJson.forEach(paragraph => {
+                const paragraphDiv = document.createElement('div');
+                paragraphDiv.className = 'rulesInfo';
+                const subHeader = document.createElement('h3');
+                subHeader.className = 'ruleHeading';
+                subHeader.textContent = paragraph.name;
+                const ruleDescription = document.createElement('p');
+                ruleDescription.className = 'ruleParagraph';
+                ruleDescription.textContent = paragraph.description;
+            });
+        });
         ruleCardNode.replaceChildren(cardNodeHeader, plusButton);
         rulesDivNode.appendChild(ruleCardNode);
     });

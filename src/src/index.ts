@@ -1,5 +1,6 @@
 import { getDefaultAutoSelectFamilyAttemptTimeout } from "net"
 import { get_headers, get_list, post_list, get_profile, get_rules, get_rule } from "./service.js"
+import { saveAs } from 'file-saver'
 
 let currentUser = "default"
 
@@ -85,20 +86,7 @@ async function renderListsPage() {
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>'
 
     addNewListNode.addEventListener("click", async () => {
-        const compListTest = 
-        {
-            "Name": "Comp Tau List",
-            "Detachment": "Mont'Ka",
-            "Points": 2000,
-            "Models": [
-                "Commander Farsight",
-                "Commander Shadowsun",
-                "Ethereal on Hover Drone",
-                "Coldstar Commander",
-            ],
-        }
-        await post_list("Tau Comp List", compListTest)
-        renderListsPage()
+        window.location.replace(`/builder.html`)
     })
 
     anchorListNode.appendChild(addNewListNode)
@@ -141,6 +129,7 @@ async function renderDownloadsPage() {
         downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-download"></i>'
         downloadLinkNode.href = `/pdf.html?file=${list}`
         downloadLinkNode.className = 'downloadLink'
+
         downloadsDivNode.appendChild(downloadLinkNode)
     });
 
@@ -187,6 +176,24 @@ async function renderRulesPage() {
         let plusButton: HTMLButtonElement = document.createElement('button')
         plusButton.className = "viewMore"
         plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>'
+        plusButton.addEventListener("click", async () => {
+        const ruleJson = await get_rule(rule)
+
+        const rulesInfoDiv: HTMLDivElement = document.createElement('div')
+        
+        ruleJson.forEach(paragraph => {
+            const paragraphDiv: HTMLDivElement = document.createElement('div')
+            paragraphDiv.className = 'rulesInfo'
+            
+            const subHeader: HTMLHeadElement = document.createElement('h3')
+            subHeader.className = 'ruleHeading'
+            subHeader.textContent = paragraph.name;
+
+            const ruleDescription: HTMLDivElement  = document.createElement('p')
+            ruleDescription.className = 'ruleParagraph'
+            ruleDescription.textContent = paragraph.description
+        });
+        })
         
         ruleCardNode.replaceChildren(cardNodeHeader, plusButton)
         rulesDivNode.appendChild(ruleCardNode)

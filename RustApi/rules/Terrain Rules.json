@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Obstacles",
+    "description": "Provide cover to units behind them and can block movement."
+  },
+  {
+    "name": "Area Terrain",
+    "description": "Large features such as forests or ruins that provide cover and affect movement."
+  },
+  {
+    "name": "Buildings",
+    "description": "Structures that can be occupied by units for added protection."
+  },
+  {
+    "name": "Hills",
+    "description": "Elevated terrain that improves line of sight."
+  }
+]

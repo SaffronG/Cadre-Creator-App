@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Range",
+    "description": "The maximum distance the weapon can target in inches."
+  },
+  {
+    "name": "Type",
+    "description": "The type of weapon, such as Rapid Fire, Heavy, Assault, or Pistol."
+  },
+  {
+    "name": "Strength",
+    "description": "The weapon's power to wound a target."
+  },
+  {
+    "name": "Armor Penetration",
+    "description": "The amount by which the weapon reduces the target's save roll."
+  },
+  {
+    "name": "Damage",
+    "description": "The amount of damage dealt by a successful hit."
+  }
+]
