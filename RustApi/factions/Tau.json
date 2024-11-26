@@ -6,5 +6,9 @@
         "Mont'Ka": "/factions/tau/montka",
         "Retaliation Cadre": "/factions/tau/retaliation_cadre",
         "Kroot Hunting Pack": "/factions/tau/kroot_hunting_pack"
-    }
+    },
+    "Models":
+    [
+        "/models/Stealth Battlesuits.json"
+    ]
 }

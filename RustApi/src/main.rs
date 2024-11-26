@@ -103,25 +103,25 @@ fn get_lists() -> String {
 
 #[get("/lists/<name>")]
 fn get_list(name:String) -> String {
-    match fs::read_to_string(Path::new(&format!(".\\lists\\{}.json", name))) {
-        Ok(_) => fs::read_to_string(Path::new(&format!(".\\lists\\{}.json", name))).unwrap().to_string(),
+    match fs::read_to_string(Path::new(&format!("{}/lists/{}.json", std::env::current_dir().unwrap().display(), name))) {
+        Ok(_) => fs::read_to_string(Path::new(&format!("./lists/{}.json", name))).unwrap().to_string(),
         Err(e) => format!("Invalid request, the requested list was not found: {}\n\n{:#?}", name, e)
     }
 }
 
 #[get("/<model>")]
 fn get_model(model: String) -> String {
-    fs::read_to_string(&format!("{}\\models\\{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
+    fs::read_to_string(&format!("{}/models/{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
 }
 
 #[get("/<profile>")]
 fn get_profile(profile: String) -> String {
-    fs::read_to_string(&format!(".\\configs\\{}.json", profile)).unwrap()
+    fs::read_to_string(&format!("./configs/{}.json", profile)).unwrap()
 }
 
 #[get("/<rule>")]
 fn get_rule(rule: String) -> String {
-    fs::read_to_string(&format!(".\\rules\\{}.json", rule)).unwrap()
+    fs::read_to_string(&format!("{}/rules/{}.json",std::env::current_dir().unwrap().display(), rule)).unwrap()
 }
 
 #[get("/")]
@@ -167,4 +167,5 @@ fn rocket() -> _ {
         .mount("/models", routes![get_model])
         .mount("/profiles", routes![get_profiles, get_profile])
         .mount("/rules", routes![get_rules, get_rule])
+        
 }

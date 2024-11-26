@@ -1,0 +1,71 @@
+{
+  "Name": "Commander in Coldstar Battlesuit",
+  "image": "https://vignette.wikia.nocookie.net/warhammer40k/images/f/f8/XV86_Coldstar_Battlesuit_Tau_Commander.jpg/revision/latest?cb=20151229235914",
+  "Unit_Composition": "1 Commander in Coldstar Battlesuit;This model is equipped with: high-output burst cannon;Battlesuit fists",
+  "Keywords": "Vehicle;Walker;Fly;Character;Battlesuit;Commander in Coldstar Battlesuit",
+  "Faction_Keywords": "T'au Empire",
+  "Movement": "12",
+  "Toughness": "5",
+  "Save": "3+;",
+  "Wounds": "6",
+  "Leadership": "7+",
+  "Objective_Control": "2",
+  "Abilities": {
+    "Core": "Deep Strike;Leader",
+    "Faction": "For the Greater Good",
+    "Enforcer Commander": "While this model is leading a unit, each time a ranged attack targets that unit, worsen the armor Penetration of that attack by 1.",
+    "Damaged": "none"
+  },
+  "Wargear_Abilities": {
+    "Battlesuit Support System": "The bearer's unit is eligble to shoot in a turn in which it Fell Back, but when doing so, only models equipped with this wargear can make ranged attacks.",
+    "Shield Generator": "The bearer has a 4+ invulnerable save.",
+    "Weapon Support System": "Each time the bearer makes a ranged attack, you can ignore any or all modifiers to the Hit roll."
+  },
+  "Wargear_Options": {
+    "This model's high-output burst cannon can be replaced with one of the following:": [
+      "1 airbursting fragmentation projector*",
+      "1 battlesuit support system*",
+      "1 burst cannon",
+      "1 cyclic ion blaster*",
+      "1 fusion blaster",
+      "1 missile pod",
+      "1 plasma rifle",
+      "1 shield generator*",
+      "1 T'au flamer",
+      "1 weapon support system*"
+    ],
+    "This model can be equpped with up to three of the following and can take duplicates:": [
+      "1 airbursting fragmentation projector*",
+      "1 battlesuit support system*",
+      "1 burst cannon",
+      "1 cyclic ion blaster*",
+      "1 fusion blaster",
+      "1 missile pod",
+      "1 plasma rifle",
+      "1 shield generator*",
+      "1 T'au flamer",
+      "1 weapon support system*"
+    ],
+    "This model can be equipped with up to two of the following, and can take duplicates": [
+      "1 gun drone**",
+      "1 marker drone**",
+      "1 shield dron**"
+    ]
+  },
+  "Ranged_Weapons": {
+    "Airbursting fragmentation projector [Blast, Indirect Fire]": "25;d6;3;3;0;1",
+    "Burst cannon": "18;4;3;5;0;1",
+    "Cyclyic ion blaster - standard": "18;3;3;7;-1;1",
+    "Cyclyic ion blaster - overcharge [hazardous]": "18;3;3;8;-2;2",
+    "Fusion blaster [Melta 2]": "12;1;3;9;-4;d6",
+    "High-ouput burst cannon": "18;3;5;0;1",
+    "Missile pod": "30;2;3;7;-1;2",
+    "Plasma rifle": "18;1;3;8;-3;3",
+    "T'au flamer [Ignores Cover, Torrent]": "12;d6;N/A;4;0;1"
+  },
+  "Melee_Weapons": {
+    "Battlesuit fists": "melee;3;4;5;0;1"
+  },
+  "Leader": "This model can be attached to the following units:; Crisis Sunforge Battlesuits;Crisis Fireknife Battlesuits;Crisis Starsycht Battlesuits",
+  "Independent Power": null
+}

@@ -1,0 +1,35 @@
+{
+  "Name": "Commander Farsight",
+  "image": "https://www.adeptusars.com/wp-content/uploads/2023/08/Commander-Farsight.jpg",
+  "Unit_Composition": "1 Commander Farsight - Epic Hero;This model is equipped with: high-intensity plasma rifle; Dawn Blade.",
+  "Keywords": "Vehicle;Walker;Fly;Character;Epic Hero;Battlesuit;Commander Farsight",
+  "Faction_Keywords": "T'au Empire",
+  "Movement": "10",
+  "Toughness": "5",
+  "Save": "2+;4+",
+  "Wounds": "8",
+  "Leadership": "6+",
+  "Objective_Control": "2",
+  "Abilities": {
+    "Core": "Deep Strike;Leader",
+    "Faction": "For the Greater Good",
+    "Way of the Short Blade": "While this model is leading a unit, each time a model in that unit makes an attack that targets an enemy unit within 9\", add 1 to the Wound roll.",
+    "Puretide's Teachings": "Once per battle round, you can target this model's unit with a Stratagem for 0CP, and can do so even if you have already targeted a different unit with that Stratagem this phase.",
+    "Damaged": "none"
+  },
+  "Wargear_Abilities": {
+    "none": null
+  },
+  "Wargear_Options": {
+    "none": null
+  },
+  "Ranged_Weapons": {
+    "High-intensity plasma rifle": "24;2;2;8;-3;3"
+  },
+  "Melee_Weapons": {
+    "Dawn Blade - strike": "melee;4;2;10;-2;3",
+    "Dawn Blade - sweep": "melee;8;2;6;-1;1"
+  },
+  "Leader": "This model can be attached to the following units:; Crisis Sunforge Battlesuits;Crisis Fireknife Battlesuits;Crisis Starsycht Battlesuits",
+  "Independent Power": "If your army includes Commander Farsight, it cannot inclue any Ethereal units. If you army includes any Ethereal units, it connat include Commander Farsight."
+}

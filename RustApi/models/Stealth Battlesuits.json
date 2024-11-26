@@ -1,34 +1,34 @@
 {
-    "Name": "Stealth Battlesuits",
-    "Unit_Composition": "1 Stealth Shas'vre;2-5 Stealth Shas'ui;Every Model is equipped with: burst cannon, battlesuit fists",
-    "Keywords": "Infantry;Fly;Battlesuit;Stealth",
-    "Faction_Keywords": "T'au Empire",
-    "Movement": "8",
-    "Toughness": "4",
-    "Save": "3+",
-    "Wounds": "2",
-    "Leadership": "7+",
-    "Objective_Control": "1",
-    "Abilities": {
-        "Core": "Infiltrators;Stealth",
-        "Faction": "For the Greater Good",
-        "Forward Observers": "Each time this unit is an Observer Unit, until the end of the phase, each time a ranged attack is made by a model in their Guided Unit that targets their Spotted unit, re-roll a hit roll of 1 and re-roll a wound roll of 1.",
-        "Damaged": "none"
-    },
-    "Wargear_Abilities": {
-        "Battlesuit Support System": "The bearer's unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
-        "Homing Beacon": "Once per battle, you can use the rapid ingress Stratagem for 0CP. The target must be set up within 3 inches of the bearer's unit and not wihin 9 inches of any enemy units.;Designer's Note: Place a Homing Beacon token next to this unit, removing it once this ablility is used."
-    },
-    "Wargear_Options": {
-        "0": "The Stealth Shas'vre can be equipped with up to two of the following, and can take duplicates:;1 gun drone*;1 marker drone*;1 shield drone*;",
-        "1": "For every 3 models in the unit, 1 model's burst cannon can be replaced with 1 fusion blaster.",
-        "2": "For every 3 models in the unit, 1 model can be equipped with 1 battlesuit support system."
-    },
-    "Ranged_Weapons": {
-        "Burst cannon": "18;4;4+;5;0;1",
-        "Fusion blaster [Melta 2]": "12;1;4+;9;-4;d6"
-    },
-    "Melee_Weapons": {
-        "Battlesuit fists": "Melee;2;5+;4;0;1"
-    }
+  "Name": "Stealth Battlesuits",
+  "Unit_Composition": "1 Stealth Shas'vre;2-5 Stealth Shas'ui;Every Model is equipped with: burst cannon, battlesuit fists",
+  "Keywords": "Infantry;Fly;Battlesuit;Stealth",
+  "Faction_Keywords": "T'au Empire",
+  "Movement": "8",
+  "Toughness": "4",
+  "Save": "3+",
+  "Wounds": "2",
+  "Leadership": "7+",
+  "Objective_Control": "1",
+  "Abilities": {
+    "Core": "Infiltrators;Stealth",
+    "Faction": "For the Greater Good",
+    "Forward Observers": "Each time this unit is an Observer Unit, until the end of the phase, each time a ranged attack is made by a model in their Guided Unit that targets their Spotted unit, re-roll a hit roll of 1 and re-roll a wound roll of 1.",
+    "Damaged": "none"
+  },
+  "Wargear_Abilities": {
+    "Battlesuit Support System": "The bearer's unit is eligible to shoot in a turn in which it Fell Back, but when doing so only models equipped with this wargear can make ranged attacks.",
+    "Homing Beacon": "Once per battle, you can use the rapid ingress Stratagem for 0CP. The target must be set up within 3 inches of the bearer's unit and not wihin 9 inches of any enemy units.;Designer's Note: Place a Homing Beacon token next to this unit, removing it once this ablility is used."
+  },
+  "Wargear_Options": {
+    "0": "The Stealth Shas'vre can be equipped with up to two of the following, and can take duplicates:;1 gun drone*;1 marker drone*;1 shield drone*;",
+    "1": "For every 3 models in the unit, 1 model's burst cannon can be replaced with 1 fusion blaster.",
+    "2": "For every 3 models in the unit, 1 model can be equipped with 1 battlesuit support system."
+  },
+  "Ranged_Weapons": {
+    "Burst cannon": "18;4;4+;5;0;1",
+    "Fusion blaster [Melta 2]": "12;1;4+;9;-4;d6"
+  },
+  "Melee_Weapons": {
+    "Battlesuit fists": "Melee;2;5+;4;0;1"
+  }
 }
