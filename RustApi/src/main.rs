@@ -35,11 +35,13 @@ impl rocket::fairing::Fairing for CORS {
 
 // GET REQUESTS
 #[get("/")]
-async fn json_schema() -> NamedFile {
-    NamedFile::open("schema.html").await.unwrap()
+async fn json_schema() -> Result<NamedFile, std::io::Error> {
+    NamedFile::open("schema.html").await
 }
 
-#[get("/factions")]
+// READ ALL AVAILABLE FILES
+
+#[get("/")]
 fn get_factions_list() -> String {
     if !fs::exists("./factions").unwrap()
     {
@@ -78,11 +80,11 @@ fn get_profiles() -> String {
 }
 
 #[get("/<faction>")]
-fn get_faction(faction: &str) -> String {
-    fs::read_to_string(&format!("{}/factions/{}.json", std::env::current_dir().unwrap().display() ,faction)).unwrap()
+fn get_faction(faction: &str) -> Result<String, std::io::Error> {
+    fs::read_to_string(&format!("{}/factions/{}.json", std::env::current_dir().unwrap().display() ,faction))
 }
 
-#[get("/lists")]
+#[get("/")]
 fn get_lists() -> String {
     if !fs::exists("./lists").unwrap()
     {
@@ -99,29 +101,6 @@ fn get_lists() -> String {
     }
     out = out[0..(out.len()-1)].to_string() + "]}";
     out
-}
-
-#[get("/lists/<name>")]
-fn get_list(name:String) -> String {
-    match fs::read_to_string(Path::new(&format!("{}/lists/{}.json", std::env::current_dir().unwrap().display(), name))) {
-        Ok(_) => fs::read_to_string(Path::new(&format!("./lists/{}.json", name))).unwrap().to_string(),
-        Err(e) => format!("Invalid request, the requested list was not found: {}\n\n{:#?}", name, e)
-    }
-}
-
-#[get("/<model>")]
-fn get_model(model: String) -> String {
-    fs::read_to_string(&format!("{}/models/{}.json", std::env::current_dir().unwrap().display() , model)).unwrap()
-}
-
-#[get("/<profile>")]
-fn get_profile(profile: String) -> String {
-    fs::read_to_string(&format!("./configs/{}.json", profile)).unwrap()
-}
-
-#[get("/<rule>")]
-fn get_rule(rule: String) -> String {
-    fs::read_to_string(&format!("{}/rules/{}.json",std::env::current_dir().unwrap().display(), rule)).unwrap()
 }
 
 #[get("/")]
@@ -143,27 +122,55 @@ fn get_rules() -> String {
     out
 }
 
+// SERVE SPECIFIC FILES
+
+#[get("/<name>")]
+fn get_list(name:String) -> Result<String, std::io::Error> {
+    fs::read_to_string(Path::new(&format!("{}/lists/{}.json", std::env::current_dir().unwrap().display(), name)))
+}
+
+#[get("/<model>")]
+fn get_model(model: String) -> Result<String, std::io::Error> {
+    fs::read_to_string(&format!("{}/models/{}.json", std::env::current_dir().unwrap().display() , model))
+}
+
+#[get("/<profile>")]
+fn get_profile(profile: String) -> Result<String, std::io::Error> {
+    fs::read_to_string(&format!("./configs/{}.json", profile))
+}
+
+#[get("/<rule>")]
+fn get_rule(rule: String) -> Result<String, std::io::Error> {
+    fs::read_to_string(&format!("{}/rules/{}.json",std::env::current_dir().unwrap().display(), rule))
+}
+
 // OPTIONS HANDLERS
-#[rocket::options("/lists")]
+
+#[rocket::options("/")]
 fn cors_post_handler() {
 }
 
 // POST REQUESTS
+
 #[post("/lists", format = "json", data = "<new_list>")]
-fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<String, std::io::Error> {
+fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<&'static str, std::io::Error> {
     // Get the file name and serialize the struct into JSON \\
     let filename = format!("./lists/{}.json", &new_list.Name);
     let serialized = serde_json::to_string(&new_list.into_inner()).unwrap();
-    fs::write(filename, serialized)?;
-    Ok(format!("List created successfully"))
+    match fs::write(filename, serialized) {
+        Ok(()) => Ok("File submitted successfully!"),
+        _ => Err(std::io::Error::new(std::io::ErrorKind::Other, "Failed to post list"))
+    }
 }
+
 #[launch]
 fn rocket() -> _ {
     rocket::build()
         .attach(CORS)
         .configure(rocket::Config::figment().merge(("port", 8000)))
-        .mount("/", routes![json_schema, get_factions_list, get_lists, get_list, post_list, cors_post_handler])
-        .mount("/factions", routes![get_faction])
+        .mount("/", routes![json_schema]) // SEND THE API SCHEMA TO THE USER
+        .mount("/lists", routes![get_list, get_lists, post_list, cors_post_handler])
+        .mount("/factions", routes![get_faction, get_factions_list])
         .mount("/models", routes![get_model])
         .mount("/profiles", routes![get_profiles, get_profile])
         .mount("/rules", routes![get_rules, get_rule])

@@ -82,7 +82,11 @@ async function renderSettingsPage() {
         settingItemNode.appendChild(settingToggleButton);
         settingsDivNode.appendChild(settingItemNode);
     }
-    mainAnchorNode.replaceChildren(settingsDivNode);
+    const loginButton = document.createElement('a');
+    loginButton.id = "loginLink";
+    loginButton.href = "/index.html?content=login";
+    loginButton.textContent = "Login";
+    mainAnchorNode.replaceChildren(loginButton, settingsDivNode);
 }
 async function renderDownloadsPage() {
     const lists = await get_headers();
@@ -148,6 +152,17 @@ async function renderRulesPage() {
     });
     mainAnchorNode.replaceChildren(rulesDivNode);
 }
+async function renderLoginPage() {
+    const loginForm = document.createElement('div');
+    loginForm.id = "formNode";
+    const header = document.createElement('h1');
+    header.textContent = "Login";
+    header.id = "loginHeader";
+    const usernameBlock = document.createElement('div');
+    usernameBlock.className = "formBlock";
+    const passwordBlock = document.createElement('div');
+    passwordBlock.className = "formBlock";
+}
 switch (contents) {
     case "export":
         renderExportPage();
@@ -163,6 +178,9 @@ switch (contents) {
         break;
     case "rules":
         renderRulesPage();
+        break;
+    case "login":
+        renderLoginPage();
         break;
     default:
         renderLanding();

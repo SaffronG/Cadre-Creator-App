@@ -6,17 +6,17 @@ export async function get_list(name) {
     let response = await fetch(`http://127.0.0.1:8000/lists/${name}`);
     return await response.json();
 }
-export async function post_list(name, data) {
+export async function post_list(data) {
     await fetch('http://127.0.0.1:8000/lists', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            "Name": "Comp list",
-            "Detachment": "Mont'Ka",
-            "Points": 1000,
-            "Models": ["Ethereal", "Commander Shadowsun"]
+            "Name": data.name,
+            "Detachment": data.detachment,
+            "Points": Number(data.points),
+            "Models": data.models
         })
     });
 }
