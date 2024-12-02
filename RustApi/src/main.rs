@@ -5,7 +5,7 @@ use rocket::fs::NamedFile;
 // use serde_json::{Result, value};
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Serialize, Debug)]
+#[derive(Deserialize, Serialize)]
 #[allow(non_snake_case)]
 struct List {
     Name: String,
@@ -152,14 +152,14 @@ fn cors_post_handler() {
 
 // POST REQUESTS
 
-#[post("/lists", format = "json", data = "<new_list>")]
+#[post("/", format = "json", data = "<new_list>")]
 fn post_list(new_list: rocket::serde::json::Json<List>) -> Result<&'static str, std::io::Error> {
     // Get the file name and serialize the struct into JSON \\
     let filename = format!("./lists/{}.json", &new_list.Name);
     let serialized = serde_json::to_string(&new_list.into_inner()).unwrap();
     match fs::write(filename, serialized) {
         Ok(()) => Ok("File submitted successfully!"),
-        _ => Err(std::io::Error::new(std::io::ErrorKind::Other, "Failed to post list"))
+        e => Err(std::io::Error::new(std::io::ErrorKind::Other, format!("{:?}", e)))
     }
 }
 
@@ -174,5 +174,4 @@ fn rocket() -> _ {
         .mount("/models", routes![get_model])
         .mount("/profiles", routes![get_profiles, get_profile])
         .mount("/rules", routes![get_rules, get_rule])
-        
 }

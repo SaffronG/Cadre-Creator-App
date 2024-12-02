@@ -1,5 +1,5 @@
 import { url } from "inspector"
-import { get_list } from "./service.js"
+import { get_list, get_img } from "./service.js"
 
 const mainAnchor = document.getElementById('bodyAnchor')
 
@@ -21,12 +21,15 @@ async function renderList() {
     let modelDivNode: HTMLDivElement = document.createElement('div')
     modelDivNode.className = "listModels"
 
-    list.Models.forEach(model => {
+    let allElements = list.Models.map( async (model) => {
+
         let modelNode: HTMLParagraphElement = document.createElement('p')
         modelNode.className = "modelName"
         modelNode.textContent = model
+
         modelDivNode.appendChild(modelNode)
     })
+
 
     listDiv.replaceChildren(listName, pointsNode, modelDivNode)
     mainAnchor.replaceChildren(listDiv)

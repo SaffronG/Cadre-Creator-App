@@ -12,7 +12,7 @@ async function renderList() {
     pointsNode.className = "pointsDescription";
     let modelDivNode = document.createElement('div');
     modelDivNode.className = "listModels";
-    list.Models.forEach(model => {
+    let allElements = list.Models.map(async (model) => {
         let modelNode = document.createElement('p');
         modelNode.className = "modelName";
         modelNode.textContent = model;

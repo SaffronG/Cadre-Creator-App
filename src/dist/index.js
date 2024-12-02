@@ -77,14 +77,14 @@ async function renderSettingsPage() {
         settingHeaderNode.innerText = setting;
         settingHeaderNode.className = "settingLabel";
         const settingToggleButton = document.createElement('div');
-        settingToggleButton.innerHTML = '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>';
+        settingToggleButton.innerHTML = setting == "Dark-Mode" || setting == "Push-Notifications" ? '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>' : '<select></select>';
         settingItemNode.appendChild(settingHeaderNode);
         settingItemNode.appendChild(settingToggleButton);
         settingsDivNode.appendChild(settingItemNode);
     }
     const loginButton = document.createElement('a');
     loginButton.id = "loginLink";
-    loginButton.href = "/index.html?content=login";
+    loginButton.href = "/index.html?contents=login";
     loginButton.textContent = "Login";
     mainAnchorNode.replaceChildren(loginButton, settingsDivNode);
 }

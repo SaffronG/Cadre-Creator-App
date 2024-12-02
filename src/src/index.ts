@@ -1,5 +1,5 @@
 import { getDefaultAutoSelectFamilyAttemptTimeout } from "net"
-import { get_headers, get_list, post_list, get_profile, get_rules, get_rule } from "./service.js"
+import { get_headers, get_list, post_list, get_profile, get_rules, get_rule, get_img } from "./service.js"
 import { saveAs } from 'file-saver'
 
 let currentUser = "default"
@@ -109,7 +109,7 @@ async function renderSettingsPage() {
         settingHeaderNode.className = "settingLabel"
 
         const settingToggleButton: HTMLDivElement = document.createElement('div')
-        settingToggleButton.innerHTML = '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>'
+        settingToggleButton.innerHTML = setting == "Dark-Mode" || setting == "Push-Notifications" ? '</label><!-- Rounded switch --><label class="switch"><input type="checkbox"><span class="slider round"></span></label>' : '<select></select>'
 
         settingItemNode.appendChild(settingHeaderNode)
         settingItemNode.appendChild(settingToggleButton)
@@ -118,7 +118,7 @@ async function renderSettingsPage() {
 
     const loginButton: HTMLAnchorElement = document.createElement('a')
     loginButton.id = "loginLink"
-    loginButton.href = "/index.html?content=login"
+    loginButton.href = "/index.html?contents=login"
     loginButton.textContent = "Login"
 
     mainAnchorNode.replaceChildren(loginButton, settingsDivNode)

@@ -27,6 +27,7 @@ body {
   background-color: var(--dark-color);
   color: var(--white-color);
   height: 100%;
+  overflow: hidden;
 }
 
 .nav-bar {
@@ -352,5 +353,27 @@ input:checked + .slider:before {
   padding: 1em;
   border-radius: 1em;
   background-color: var(--main-ochre);
-  
+}
+
+.listModels {
+  color: var(--dark-text-color);
+  border-color: var(--dark-color);
+  border-style: solid;
+  margin: .5em;
+}
+
+#selectedModels {
+  overflow: auto;
+  max-height: 20em;
+  border-style: solid;
+  border-color: var(--dark-text-color);
+  padding: 1em;
+}
+
+.modelImage {
+  width: 15em;
+  border-radius: 1em;
+  border-style: solid;
+  background-color: var(--white-color);
+  border-color: var(--dark-color);
 }

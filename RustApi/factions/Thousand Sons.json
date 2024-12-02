@@ -1,5 +1,5 @@
 {
-    "Faction": "Tau",
+    "Faction": "Thousand Sons",
     "Detachments":
     {
         "Kauyon": "/factions/tau/kauyon",
@@ -9,9 +9,6 @@
     },
     "Models":
     [
-        "/models/Stealth Battlesuits.json",
-        "/models/Coldstar Commander.json",
-        "/models/Enforcer Commander.json",
-        "/models/Commander Farsight.json"
+        "/models/Stealth Battlesuits.json"
     ]
 }

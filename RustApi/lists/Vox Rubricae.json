@@ -1,0 +1,12 @@
+{
+  "Name": "Vox Rubricae",
+  "Detachment": "tau",
+  "Points": 1000,
+  "Models": [
+    "Rhubric Marines",
+    "Rhubric Marines",
+    "Rhubric Marines",
+    "Magnus the Red",
+    "Mutalith Vortex Beast"
+  ]
+}
