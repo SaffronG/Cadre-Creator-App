@@ -62,10 +62,16 @@ RUN adduser \
 USER appuser
 
 WORKDIR /app
-COPY api/ ./
 
 # Copy the executable from the "build" stage.
 COPY --from=build /bin/server /bin/
+COPY models /app/models
+COPY configs /app/configs
+COPY factions /app/factions
+COPY lists /app/lists
+COPY schema.html /app
+COPY rules /app/rules
+
 # Configure rocket to listen on all interfaces.
 ENV ROCKET_ADDRESS=0.0.0.0
 
