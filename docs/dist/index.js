@@ -60,7 +60,7 @@ async function renderListsPage() {
     addNewListNode.className = "viewMore";
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>';
     addNewListNode.addEventListener("click", async () => {
-        window.location.replace(`/builder.html`);
+        window.location.replace(`./builder.html`);
     });
     anchorListNode.appendChild(addNewListNode);
     mainAnchorNode.replaceChildren(anchorListNode);
