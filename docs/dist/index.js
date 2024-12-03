@@ -84,7 +84,7 @@ async function renderSettingsPage() {
     }
     const loginButton = document.createElement('a');
     loginButton.id = "loginLink";
-    loginButton.href = "/index.html?contents=login";
+    loginButton.href = "./index.html?contents=login";
     loginButton.textContent = "Login";
     mainAnchorNode.replaceChildren(loginButton, settingsDivNode);
 }
@@ -95,7 +95,7 @@ async function renderDownloadsPage() {
     lists.lists.forEach(list => {
         const downloadLinkNode = document.createElement('a');
         downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-download"></i>';
-        downloadLinkNode.href = `/pdf.html?file=${list}`;
+        downloadLinkNode.href = `./pdf.html?file=${list}`;
         downloadLinkNode.className = 'downloadLink';
         downloadsDivNode.appendChild(downloadLinkNode);
     });
@@ -111,7 +111,7 @@ async function renderExportPage() {
     lists.lists.forEach(list => {
         const downloadLinkNode = document.createElement('a');
         downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-arrow-up-from-bracket"></i>';
-        downloadLinkNode.href = `/pdf.html?file=${list}`;
+        downloadLinkNode.href = `./pdf.html?file=${list}`;
         downloadLinkNode.className = 'downloadLink';
         downloadsDivNode.appendChild(downloadLinkNode);
     });
