@@ -1,4 +1,3 @@
-import { getDefaultAutoSelectFamilyAttemptTimeout } from "net"
 import { get_headers, get_list, post_list, get_profile, get_rules, get_rule, get_img } from "./service.js"
 import { saveAs } from 'file-saver'
 
