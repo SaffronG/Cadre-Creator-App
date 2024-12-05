@@ -1,4 +1,4 @@
-const webroot = "http://127.0.0.1:8000";
+const webroot = "https://wh40kserver1-yzbcrd1s.b4a.run/";
 
 export async function get_headers() {
     let response = await fetch(`${webroot}/lists`);
