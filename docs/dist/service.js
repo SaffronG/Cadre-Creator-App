@@ -4,7 +4,7 @@ export async function get_headers() {
     return await response.json();
 }
 export async function get_list(name) {
-    let response = await fetch(`${webroot}/${name}`);
+    let response = await fetch(`${webroot}/lists/${name}`);
     return await response.json();
 }
 export async function post_list(data) {

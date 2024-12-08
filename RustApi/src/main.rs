@@ -122,6 +122,26 @@ fn get_rules() -> String {
     out
 }
 
+#[get("/")]
+fn get_models() -> String {
+    if !fs::exists("./models").unwrap()
+    {
+        fs::create_dir("./models").unwrap();
+    }
+    let mut out = String::new();
+    out += "{\"lists\":[";
+    for path in fs::read_dir("./models").unwrap() {
+        if let Ok(ref _entry) = path {
+            out += "\"";
+            out += &path.as_ref().unwrap().file_name().to_str().unwrap()[0..path.as_ref().unwrap().file_name().len()-5];
+            out += "\","
+        }
+    }
+    out = out[0..(out.len()-1)].to_string() + "]}";
+    out
+}
+
+
 // SERVE SPECIFIC FILES
 
 #[get("/<name>")]
@@ -171,7 +191,7 @@ fn rocket() -> _ {
         .mount("/", routes![json_schema]) // SEND THE API SCHEMA TO THE USER
         .mount("/lists", routes![get_list, get_lists, post_list, cors_post_handler])
         .mount("/factions", routes![get_faction, get_factions_list])
-        .mount("/models", routes![get_model])
+        .mount("/models", routes![get_model, get_models])
         .mount("/profiles", routes![get_profiles, get_profile])
         .mount("/rules", routes![get_rules, get_rule])
 }

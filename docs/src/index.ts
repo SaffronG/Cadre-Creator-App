@@ -85,7 +85,7 @@ async function renderListsPage() {
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>'
 
     addNewListNode.addEventListener("click", async () => {
-        window.location.replace(`/builder.html`)
+        window.location.replace(`./builder.html`)
     })
 
     anchorListNode.appendChild(addNewListNode)
@@ -117,10 +117,10 @@ async function renderSettingsPage() {
 
     const loginButton: HTMLAnchorElement = document.createElement('a')
     loginButton.id = "loginLink"
-    loginButton.href = "/index.html?contents=login"
+    loginButton.href = "./index.html?contents=login"
     loginButton.textContent = "Login"
 
-    mainAnchorNode.replaceChildren(loginButton, settingsDivNode)
+    mainAnchorNode.replaceChildren(settingsDivNode)
 }
 
 async function renderDownloadsPage() {
@@ -152,7 +152,7 @@ async function renderExportPage() {
     lists.lists.forEach(list => {
         const downloadLinkNode: HTMLAnchorElement = document.createElement('a')
         downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-arrow-up-from-bracket"></i>'
-        downloadLinkNode.href = `/pdf.html?file=${list}`
+        downloadLinkNode.href = `./pdf.html?file=${list}`
         downloadLinkNode.className = 'downloadLink'
         downloadsDivNode.appendChild(downloadLinkNode)
     });
@@ -170,6 +170,10 @@ async function renderRulesPage() {
     rulesDivNode.id = "rules"
 
     rules.lists.forEach(rule => {
+        // MAIN CONTENT
+        const titleDiv: HTMLDivElement = document.createElement('div')
+        titleDiv.className = "titleDiv"
+
         const ruleCardNode: HTMLDivElement = document.createElement('div')
         ruleCardNode.className = "ruleCard"
         
@@ -177,32 +181,50 @@ async function renderRulesPage() {
         cardNodeHeader.textContent = rule
         cardNodeHeader.className  = "ruleHeader"
 
+        
         let plusButton: HTMLButtonElement = document.createElement('button')
         plusButton.className = "viewMore"
         plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>'
-        plusButton.addEventListener("click", async () => {
-        const ruleJson = await get_rule(rule)
-
-        const rulesInfoDiv: HTMLDivElement = document.createElement('div')
         
+        // CONTENT HIDE AND UN-HIDER
+        const ruleSubheadings: HTMLDivElement = document.createElement('div')
+        ruleSubheadings.className = "rulesInfo"
+
+        let displayOn = false;
+        ruleSubheadings.style.display = displayOn ? "block" : "none"
+        
+        // VIEW MORE
+        plusButton.addEventListener("click", async () => {
+            displayOn = displayOn ? false : true
+            ruleSubheadings.style.display = displayOn ? "block" : "none"
+
+            const ruleJson = await get_rule(rule)
+            
+        const paragraphDiv: HTMLDivElement = document.createElement('div')
+        paragraphDiv.className = 'rulesInfo'
         ruleJson.forEach(paragraph => {
-            const paragraphDiv: HTMLDivElement = document.createElement('div')
-            paragraphDiv.className = 'rulesInfo'
+            const rowDiv: HTMLDivElement = document.createElement('div')
+            rowDiv.className = "rowDiv"
             
             const subHeader: HTMLHeadElement = document.createElement('h3')
             subHeader.className = 'ruleHeading'
             subHeader.textContent = paragraph.name;
-
+            
             const ruleDescription: HTMLDivElement  = document.createElement('p')
             ruleDescription.className = 'ruleParagraph'
             ruleDescription.textContent = paragraph.description
+            
+            rowDiv.replaceChildren(subHeader, ruleDescription)
+            paragraphDiv.appendChild(rowDiv)
         });
-        })
+        ruleSubheadings.replaceChildren(paragraphDiv)
+    })
         
-        ruleCardNode.replaceChildren(cardNodeHeader, plusButton)
-        rulesDivNode.appendChild(ruleCardNode)
+    titleDiv.replaceChildren(cardNodeHeader, plusButton)
+    ruleCardNode.replaceChildren(titleDiv, ruleSubheadings)
+    rulesDivNode.appendChild(ruleCardNode)
     });
-
+    
     mainAnchorNode.replaceChildren(rulesDivNode)
 }
 

@@ -60,7 +60,7 @@ async function renderListsPage() {
     addNewListNode.className = "viewMore";
     addNewListNode.innerHTML = '<i class="fa-solid fa-plus"></i>';
     addNewListNode.addEventListener("click", async () => {
-        window.location.replace(`/builder.html`);
+        window.location.replace(`./builder.html`);
     });
     anchorListNode.appendChild(addNewListNode);
     mainAnchorNode.replaceChildren(anchorListNode);
@@ -84,9 +84,9 @@ async function renderSettingsPage() {
     }
     const loginButton = document.createElement('a');
     loginButton.id = "loginLink";
-    loginButton.href = "/index.html?contents=login";
+    loginButton.href = "./index.html?contents=login";
     loginButton.textContent = "Login";
-    mainAnchorNode.replaceChildren(loginButton, settingsDivNode);
+    mainAnchorNode.replaceChildren(settingsDivNode);
 }
 async function renderDownloadsPage() {
     const lists = await get_headers();
@@ -111,7 +111,7 @@ async function renderExportPage() {
     lists.lists.forEach(list => {
         const downloadLinkNode = document.createElement('a');
         downloadLinkNode.innerHTML = list + '  <i class="fa-solid fa-arrow-up-from-bracket"></i>';
-        downloadLinkNode.href = `/pdf.html?file=${list}`;
+        downloadLinkNode.href = `./pdf.html?file=${list}`;
         downloadLinkNode.className = 'downloadLink';
         downloadsDivNode.appendChild(downloadLinkNode);
     });
@@ -125,6 +125,9 @@ async function renderRulesPage() {
     const rulesDivNode = document.createElement('div');
     rulesDivNode.id = "rules";
     rules.lists.forEach(rule => {
+        // MAIN CONTENT
+        const titleDiv = document.createElement('div');
+        titleDiv.className = "titleDiv";
         const ruleCardNode = document.createElement('div');
         ruleCardNode.className = "ruleCard";
         const cardNodeHeader = document.createElement('h2');
@@ -133,21 +136,34 @@ async function renderRulesPage() {
         let plusButton = document.createElement('button');
         plusButton.className = "viewMore";
         plusButton.innerHTML = '<i class="fa-solid fa-plus"></i>';
+        // CONTENT HIDE AND UN-HIDER
+        const ruleSubheadings = document.createElement('div');
+        ruleSubheadings.className = "rulesInfo";
+        let displayOn = false;
+        ruleSubheadings.style.display = displayOn ? "block" : "none";
+        // VIEW MORE
         plusButton.addEventListener("click", async () => {
+            displayOn = displayOn ? false : true;
+            ruleSubheadings.style.display = displayOn ? "block" : "none";
             const ruleJson = await get_rule(rule);
-            const rulesInfoDiv = document.createElement('div');
+            const paragraphDiv = document.createElement('div');
+            paragraphDiv.className = 'rulesInfo';
             ruleJson.forEach(paragraph => {
-                const paragraphDiv = document.createElement('div');
-                paragraphDiv.className = 'rulesInfo';
+                const rowDiv = document.createElement('div');
+                rowDiv.className = "rowDiv";
                 const subHeader = document.createElement('h3');
                 subHeader.className = 'ruleHeading';
                 subHeader.textContent = paragraph.name;
                 const ruleDescription = document.createElement('p');
                 ruleDescription.className = 'ruleParagraph';
                 ruleDescription.textContent = paragraph.description;
+                rowDiv.replaceChildren(subHeader, ruleDescription);
+                paragraphDiv.appendChild(rowDiv);
             });
+            ruleSubheadings.replaceChildren(paragraphDiv);
         });
-        ruleCardNode.replaceChildren(cardNodeHeader, plusButton);
+        titleDiv.replaceChildren(cardNodeHeader, plusButton);
+        ruleCardNode.replaceChildren(titleDiv, ruleSubheadings);
         rulesDivNode.appendChild(ruleCardNode);
     });
     mainAnchorNode.replaceChildren(rulesDivNode);

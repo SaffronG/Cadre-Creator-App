@@ -6,7 +6,7 @@ export async function get_headers() {
 }
 
 export async function get_list(name: string) {
-    let response = await fetch(`${webroot}/${name}`)
+    let response = await fetch(`${webroot}/lists/${name}`)
     return await response.json()
 }
 

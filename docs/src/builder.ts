@@ -57,6 +57,10 @@ async function renderForm() {
     modelFinder.id = 'modelInput'
     modelFinder.placeholder = 'Commander Farsight...'
 
+    modelFinder.addEventListener('input', async (e) => {
+        e.preventDefault();
+    });
+
     const buttonDiv: HTMLDivElement = document.createElement('div')
     buttonDiv.id = "formButtons"
 
