@@ -1,4 +1,4 @@
-import { post_list, get_factions, get_img } from "./service.js";
+import { post_list, get_factions, get_img, get_models } from "./service.js";
 const mainAnchorNode = document.getElementById("mainContent");
 async function renderForm() {
     const formDivNode = document.createElement('form');
@@ -38,9 +38,24 @@ async function renderForm() {
     modelLabel.textContent = 'Models';
     const selectedModels = document.createElement('div');
     selectedModels.id = "selectedModels";
+    const availableModels = document.createElement('div');
+    availableModels.id = "availableModels";
     const modelFinder = document.createElement('input');
     modelFinder.id = 'modelInput';
     modelFinder.placeholder = 'Commander Farsight...';
+    modelFinder.addEventListener('input', async (e) => {
+        e.preventDefault();
+        let modelsList = document.createElement('ul');
+        let models = await get_models();
+        const currentSearch = models.lists.filter((model) => model.includes(modelFinder.value));
+        const modelsPNodes = currentSearch.map((model) => {
+            let liNode = document.createElement('li');
+            liNode.className = "availableModel";
+            liNode.textContent = model;
+            modelsList.appendChild(liNode);
+        });
+        availableModels.replaceChildren(modelsList);
+    });
     const buttonDiv = document.createElement('div');
     buttonDiv.id = "formButtons";
     const searchButton = document.createElement('input');
@@ -85,7 +100,7 @@ async function renderForm() {
         selectedModels.replaceChildren();
     });
     buttonDiv.replaceChildren(searchButton, addButton, resetButton);
-    formDivNode.replaceChildren(listNameLabel, listNameInput, detachmentLabel, detatchmentSelector, pointsLabel, pointValueSelector, modelLabel, selectedModels, modelFinder, buttonDiv);
+    formDivNode.replaceChildren(listNameLabel, listNameInput, detachmentLabel, detatchmentSelector, pointsLabel, pointValueSelector, availableModels, modelLabel, selectedModels, modelFinder, buttonDiv);
     return formDivNode;
 }
 async function renderBuilder() {

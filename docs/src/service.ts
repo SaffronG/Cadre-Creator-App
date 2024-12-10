@@ -51,3 +51,9 @@ export async function get_img (model: String) {
     const json = await response.json()
     return json.image
 }
+
+export async function get_models () {
+    const response = await fetch(`${webroot}models/`)
+    const json = await response.json()
+    return json
+}

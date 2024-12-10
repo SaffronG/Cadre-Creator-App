@@ -283,6 +283,10 @@ input:checked + .slider:before {
   width: 95%;
 }
 
+.availableModel {
+  color: var(--dark-text-color);
+}
+
 .ruleCard {
   font-size: smaller;
   display: flex;

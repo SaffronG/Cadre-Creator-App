@@ -1,4 +1,4 @@
-import { post_list, get_factions, get_img } from "./service.js"
+import { post_list, get_factions, get_img, get_models } from "./service.js"
 
 const mainAnchorNode = document.getElementById("mainContent")
 
@@ -53,12 +53,28 @@ async function renderForm() {
     const selectedModels: HTMLDivElement = document.createElement('div')
     selectedModels.id = "selectedModels"
 
+    const availableModels: HTMLDivElement = document.createElement('div')
+    availableModels.id = "availableModels"
+
     const modelFinder: HTMLInputElement = document.createElement('input')
     modelFinder.id = 'modelInput'
     modelFinder.placeholder = 'Commander Farsight...'
 
     modelFinder.addEventListener('input', async (e) => {
         e.preventDefault();
+        let modelsList: HTMLUListElement = document.createElement('ul')
+
+        let models = await get_models()
+        const currentSearch: string[] = models.lists.filter((model) => model.includes(modelFinder.value))
+        const modelsPNodes = currentSearch.map(
+            (model) => {
+            let liNode: HTMLLIElement = document.createElement('li')
+            liNode.className = "availableModel"
+            liNode.textContent = model
+
+            modelsList.appendChild(liNode)
+        })
+        availableModels.replaceChildren(modelsList)
     });
 
     const buttonDiv: HTMLDivElement = document.createElement('div')
@@ -119,7 +135,7 @@ async function renderForm() {
     })
 
     buttonDiv.replaceChildren(searchButton, addButton, resetButton)
-    formDivNode.replaceChildren(listNameLabel, listNameInput,detachmentLabel, detatchmentSelector,pointsLabel, pointValueSelector, modelLabel, selectedModels, modelFinder, buttonDiv)
+    formDivNode.replaceChildren(listNameLabel, listNameInput,detachmentLabel, detatchmentSelector,pointsLabel, pointValueSelector, availableModels, modelLabel, selectedModels, modelFinder, buttonDiv)
     return formDivNode
 }
 
