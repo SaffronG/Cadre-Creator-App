@@ -1,4 +1,4 @@
-import { get_list } from "./service.js";
+import { get_list, get_model } from "./service.js";
 const mainAnchor = document.getElementById('bodyAnchor');
 async function renderList() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -13,10 +13,36 @@ async function renderList() {
     let modelDivNode = document.createElement('div');
     modelDivNode.className = "listModels";
     let allElements = list.Models.map(async (model) => {
-        let modelNode = document.createElement('p');
-        modelNode.className = "modelName";
-        modelNode.textContent = model;
-        modelDivNode.appendChild(modelNode);
+        const modelJson = await get_model(model);
+        console.log(modelJson);
+        let currentModel = document.createElement('div');
+        currentModel.className = "pdfModel";
+        let modelNameNode = document.createElement('p');
+        modelNameNode.className = "modelName";
+        modelNameNode.textContent = model;
+        let compositionNode = document.createElement('p');
+        compositionNode.className = 'unitComposition';
+        compositionNode.textContent = `Unit composition: ${modelJson.Unit_Composition}`;
+        let keywords = document.createElement('p');
+        keywords.className = 'keywords';
+        keywords.textContent = `Keywords: ${modelJson.Keywords}`;
+        let statsDiv = document.createElement('div');
+        statsDiv.className = 'stats';
+        let movement = document.createElement('p');
+        movement.textContent = `Movement: ${modelJson.Movement}`;
+        let toughness = document.createElement('p');
+        toughness.textContent = `Toughness: ${modelJson.Toughness}`;
+        let save = document.createElement('p');
+        save.textContent = `Save: ${modelJson.Save}`;
+        let wounds = document.createElement('p');
+        wounds.textContent = `Wounds: ${modelJson.Wounds}`;
+        let leadership = document.createElement('p');
+        leadership.textContent = `Leadership: ${modelJson.Leadership}`;
+        let objectiveControl = document.createElement('p');
+        objectiveControl.textContent = `Objective Control: ${modelJson.Objective_Control}`;
+        statsDiv.replaceChildren(movement, toughness, save, wounds, leadership, objectiveControl);
+        currentModel.replaceChildren(modelNameNode, compositionNode, statsDiv, keywords);
+        modelDivNode.appendChild(currentModel);
     });
     listDiv.replaceChildren(listName, pointsNode, modelDivNode);
     mainAnchor.replaceChildren(listDiv);

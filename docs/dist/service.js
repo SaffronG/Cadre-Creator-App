@@ -48,4 +48,9 @@ export async function get_models() {
     const json = await response.json();
     return json;
 }
+export async function get_model(name) {
+    const response = await fetch(`${webroot}models/${name}`);
+    const json = await response.json();
+    return json;
+}
 //# sourceMappingURL=service.js.map

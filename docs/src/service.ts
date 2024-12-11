@@ -1,3 +1,5 @@
+import exp from "constants";
+
 const webroot = "https://wh40kserver1-yzbcrd1s.b4a.run/";
 
 export async function get_headers() {
@@ -54,6 +56,12 @@ export async function get_img (model: String) {
 
 export async function get_models () {
     const response = await fetch(`${webroot}models/`)
+    const json = await response.json()
+    return json
+}
+
+export async function get_model(name: string) {
+    const response = await fetch(`${webroot}models/${name}`)
     const json = await response.json()
     return json
 }

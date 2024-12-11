@@ -3,3 +3,26 @@ body {
     color: rgb(232, 220, 220);
     text-align: center;
 }
+
+.stats {
+    display: flex;
+    overflow: auto;
+    justify-content: center;
+}
+
+.stats p {
+    margin: .5em;
+    border-color: red;
+    border-bottom-style: dashed;
+}
+
+.pdfModel {
+    padding: .5em;
+    border-style: solid;
+    border-radius: .5em;
+    margin: 1em;
+}
+
+.modelName {
+    font-size: larger;
+}
